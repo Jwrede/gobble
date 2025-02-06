@@ -1,0 +1,12 @@
+Node2D
+Node
+Sprite2D
+Polygon2D
+NavigationAgent2D
+NavigationRegion2D
+RemoteTransform2D
+Camera2D
+CollisionShape2D
+CharacterBody2D
+AnimatedSprite2D
+TileMapLayer

@@ -1,0 +1,16 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1738871750
+camera_2d.gd::GDScript::-1::1738776575::0::1::::<>Camera2D<>::
+export_presets.cfg::TextFile::-1::1738836793::0::1::::<><>::
+game_manager.gd::GDScript::-1::1738830979::0::1::::<>Node2D<>::
+godot.png::CompressedTexture2D::6077140009317520573::1738827055::1738827055::1::::<><>::
+main.tscn::PackedScene::2723098200535107363::1738837507::0::1::::<><>::uid://cp8ffan6csmbm::::res://assets/Tileset.png<>uid://b3aaw5pmo811g::::res://characters/player.tscn<>res://camera_2d.gd<>res://game_manager.gd
+::res://assets/::1738826931
+Entities.png::CompressedTexture2D::320437432490868810::1738751737::1738751748::1::::<><>::
+Tileset.png::CompressedTexture2D::5894111023268366894::1738751708::1738751754::1::::<><>::
+::res://characters/::1738845984
+outline.gdshader::Shader::-1::1738845984::0::1::::<><>::
+player.gd::GDScript::-1::1738836447::0::1::::<>Node2D<>::
+player.tscn::PackedScene::4351749192461747850::1738837507::0::1::::<><>::res://characters/player.gd<>res://characters/selection.gdshader<>res://characters/outline.gdshader<>uid://eths7xyc3r3o::::res://assets/Entities.png<>res://characters/player_movement.gd<>uid://cst2uw6w05and::::res://godot.png
+player_movement.gd::GDScript::-1::1738836710::0::1::::<>CharacterBody2D<>::
+selection.gdshader::Shader::-1::1738845984::0::1::::<><>::
