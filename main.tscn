@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://be2dbad8sfwit"]
+[gd_scene load_steps=15 format=4 uid="uid://be2dbad8sfwit"]
 
 [ext_resource type="Texture2D" uid="uid://cp8ffan6csmbm" path="res://assets/Tileset.png" id="1_2w05h"]
 [ext_resource type="PackedScene" uid="uid://dw1lq1ybnrjtn" path="res://blue_mushroom.tscn" id="2_3abwr"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b8o181omg7rri" path="res://purple_mushroom.tscn" id="5_4sxo2"]
 [ext_resource type="PackedScene" uid="uid://bv8xva4nuyrx5" path="res://hud.tscn" id="5_a42f7"]
 [ext_resource type="PackedScene" uid="uid://dm5msud167mdw" path="res://morel_mushroom.tscn" id="6_wc67b"]
-[ext_resource type="PackedScene" uid="uid://cmt7h2vfpi6tx" path="res://bee.tscn" id="11_jgtsv"]
+[ext_resource type="PackedScene" uid="uid://cmt7h2vfpi6tx" path="res://spider.tscn" id="8_51h3q"]
+[ext_resource type="PackedScene" uid="uid://dmae3rmxmf5t5" path="res://nest.tscn" id="8_v7sti"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0vj1"]
 texture = ExtResource("1_2w05h")
@@ -192,42 +193,6 @@ navigation_polygon = SubResource("NavigationPolygon_d7puk")
 
 [node name="Insects" type="Node" parent="Tilemap"]
 
-[node name="Bee" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(-81, 192)
-
-[node name="Bee2" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(-90, 135)
-
-[node name="Bee3" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(15, 143)
-
-[node name="Bee4" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(192, 143)
-
-[node name="Bee5" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(320, 118)
-
-[node name="Bee6" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(251, 28)
-
-[node name="Bee7" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(312, -46)
-
-[node name="Bee8" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(218, -57)
-
-[node name="Bee9" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(-156, -58)
-
-[node name="Bee10" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(-83, -96)
-
-[node name="Bee11" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(-4, -52)
-
-[node name="Bee12" parent="Tilemap/Insects" instance=ExtResource("11_jgtsv")]
-position = Vector2(322, -92)
-
 [node name="Shrooms" type="Node" parent="Tilemap"]
 
 [node name="BlueMushroom" parent="Tilemap/Shrooms" instance=ExtResource("2_3abwr")]
@@ -274,6 +239,13 @@ position = Vector2(39, 39)
 [node name="Unit2" parent="Tilemap/Units" instance=ExtResource("2_yiqrl")]
 z_index = 1
 position = Vector2(-12, -4)
+
+[node name="Nests" type="Node2D" parent="Tilemap"]
+
+[node name="Nest1" parent="Tilemap/Nests" node_paths=PackedStringArray("insect_spawn_node") instance=ExtResource("8_v7sti")]
+position = Vector2(118, -54)
+insect_scene = ExtResource("8_51h3q")
+insect_spawn_node = NodePath("../../Insects")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(31, 23)

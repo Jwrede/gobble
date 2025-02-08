@@ -11,6 +11,13 @@ extends CharacterBody2D
 var mycelium_stack = 0
 var end_position = Vector2.ZERO
 var player_in_range = false
+var facing = true:
+	get:
+		return facing
+	set(value):
+		if value != facing:
+			facing = value
+			$AnimatedSprite2D.flip_h = facing
 
 func _ready():
 	randomize()
@@ -23,13 +30,13 @@ func _change_direction():
 	end_position = position + direction * random_dist
 
 func _physics_process(delta):
+	$AnimatedSprite2D.play("run")
 	if not tamed:
 		var move_direction = end_position - position
 		if move_direction.length() < limit:
 			_change_direction()
 			move_direction = end_position - position
 		velocity = move_direction.normalized() * speed
-		move_and_slide()
 	else:
 		var player_position = player.global_position
 		var distance_to_player = global_position.distance_to(player_position)
@@ -37,7 +44,9 @@ func _physics_process(delta):
 			velocity = (player_position - global_position).normalized() * (speed*2)
 		else:
 			velocity = Vector2.ZERO
-		move_and_slide()
+	
+	facing = velocity.x > 0
+	move_and_slide()
 
 func _process(delta):
 	if player_in_range:

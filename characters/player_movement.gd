@@ -39,9 +39,9 @@ func _physics_process(_delta: float) -> void:
 		
 		velocity = direction * 60
 		facing = direction.x < 0
-		$AnimatedSprite2D.animation = "run"
+		$AnimatedSprite2D.play("run")
 		move_and_slide()
 	else:
 		velocity = Vector2(0,0)
-		$AnimatedSprite2D.animation = "idle"
+		$AnimatedSprite2D.play("idle")
 	queue_redraw() 

@@ -35,7 +35,7 @@ func _process(delta):
 		if drag_cursor_shape:
 			DisplayServer.cursor_set_shape(DisplayServer.CURSOR_DRAG)
 		else:
-			#handle_edge_movement(delta)
+			handle_edge_movement(delta)
 			handle_keyboard_movement(delta)
 		
 
