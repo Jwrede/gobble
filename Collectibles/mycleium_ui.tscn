@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://djilovqjojvbx"]
 
 [ext_resource type="Script" path="res://Collectibles/mycleium_ui.gd" id="1_qnu4i"]
-[ext_resource type="Texture2D" uid="uid://cfm1xg8jks1tu" path="res://assets/icons/Mycelium_JE5_BE3.png" id="2_gq54j"]
+[ext_resource type="Texture2D" uid="uid://cfm1xg8jks1tu" path="res://Assets/icons/Mycelium_JE5_BE3.png" id="2_gq54j"]
 
 [node name="Mycleium UI" type="Control"]
 layout_mode = 3

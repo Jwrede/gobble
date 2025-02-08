@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdfie5myukby5"]
 
-[ext_resource type="Texture2D" uid="uid://ba4dtvtg1alx7" path="res://assets/icons/150px-Sweet_Berries_JE1_BE1.webp" id="1_troks"]
+[ext_resource type="Texture2D" uid="uid://ba4dtvtg1alx7" path="res://Assets/icons/150px-Sweet_Berries_JE1_BE1.webp" id="1_troks"]
 
 [node name="food_ui" type="Control"]
 layout_mode = 3

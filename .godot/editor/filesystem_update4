@@ -10,3 +10,9 @@ res://Collectibles/mycleium_ui.gd
 res://Scenes/hud.tscn
 res://Scenes/spider.tscn
 res://Scenes/nest.tscn
+res://Scripts/selection_manager.gd
+res://Scenes/gnome.tscn
+res://selection.gdshader
+res://outline.gdshader
+res://Shader/selection.gdshader
+res://Shader/outline.gdshader

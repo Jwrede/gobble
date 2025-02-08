@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbeljxqn2ex4p"]
 
-[ext_resource type="Texture2D" uid="uid://bv775tsf7wqsn" path="res://assets/icons/Metal_Scrap.webp" id="1_0fjol"]
+[ext_resource type="Texture2D" uid="uid://bv775tsf7wqsn" path="res://Assets/icons/Metal_Scrap.webp" id="1_0fjol"]
 
 [node name="scrap_ui" type="Control"]
 layout_mode = 3
