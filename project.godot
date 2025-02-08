@@ -11,13 +11,8 @@ config_version=5
 [application]
 
 config/name="Gobble-main"
-run/main_scene="res://main.tscn"
+run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-
-[autoload]
-
-GameController="*res://Scripts/game_controller.gd"
-CollectMycelium="*res://Scripts/collect_mycelium.gd"
 
 [input]
 

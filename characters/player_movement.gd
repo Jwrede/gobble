@@ -1,4 +1,4 @@
-class_name Player extends CharacterBody2D
+class_name Gnome extends CharacterBody2D
 
 signal selected_toggle
 signal waypoint_changed

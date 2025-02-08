@@ -1,9 +1,12 @@
-extends Node2D
+class_name GameManager extends Node2D 
+
 
 var dragging = false  # Are we currently dragging?
 var selected = []  # Array of selected units.
 var drag_start = Vector2.ZERO  # Location where drag began.
 var select_rect = RectangleShape2D.new()  # Collision shape for drag box.
+var total_mycelium: int = 0
+
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -35,3 +38,11 @@ func _draw():
 	if dragging:
 		draw_rect(Rect2(drag_start, get_global_mouse_position() - drag_start),
 				Color.YELLOW, false, 2.0)
+
+func mycelium_collected(value: int):
+	total_mycelium += 1
+	CollectMycelium.emit_signal("mycelium_collected", total_mycelium)
+
+func mycelium_expended(value: int):
+	total_mycelium -= 1
+	CollectMycelium.emit_signal("mycelium_collected", total_mycelium)
