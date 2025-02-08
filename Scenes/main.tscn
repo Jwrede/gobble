@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://be2dbad8sfwit"]
+[gd_scene load_steps=13 format=4 uid="uid://be2dbad8sfwit"]
 
-[ext_resource type="Texture2D" uid="uid://cp8ffan6csmbm" path="res://assets/Tileset.png" id="1_57oqx"]
+[ext_resource type="Texture2D" uid="uid://cp8ffan6csmbm" path="res://Assets/Tileset.png" id="1_57oqx"]
 [ext_resource type="PackedScene" uid="uid://dw1lq1ybnrjtn" path="res://Scenes/mushroom.tscn" id="2_gfohl"]
-[ext_resource type="PackedScene" uid="uid://b3aaw5pmo811g" path="res://characters/gnome.tscn" id="6_q1l50"]
+[ext_resource type="PackedScene" uid="uid://b3aaw5pmo811g" path="res://Scenes/gnome.tscn" id="6_q1l50"]
 [ext_resource type="PackedScene" uid="uid://dmae3rmxmf5t5" path="res://Scenes/nest.tscn" id="7_wvls3"]
 [ext_resource type="PackedScene" uid="uid://cmt7h2vfpi6tx" path="res://Scenes/spider.tscn" id="8_n8blm"]
+[ext_resource type="Script" path="res://Scripts/selection_manager.gd" id="9_f8uri"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="9_mhu06"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="10_xsxhy"]
 [ext_resource type="PackedScene" uid="uid://bv8xva4nuyrx5" path="res://Scenes/hud.tscn" id="11_akf3r"]
@@ -258,6 +259,9 @@ script = ExtResource("10_xsxhy")
 [node name="UI" type="Node" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("11_akf3r")]
+
+[node name="SelectionManager" type="Node2D" parent="."]
+script = ExtResource("9_f8uri")
 
 [editable path="Tilemap/Shrooms/Mushroom2"]
 [editable path="Tilemap/Shrooms/Mushroom6"]

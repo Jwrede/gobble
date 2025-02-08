@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://cmt7h2vfpi6tx"]
 
 [ext_resource type="Script" path="res://Scripts/spider.gd" id="1_byyrv"]
-[ext_resource type="Texture2D" uid="uid://yhfag0ihx500" path="res://characters/Spider Sprite Sheet.png" id="2_de1lh"]
+[ext_resource type="Texture2D" uid="uid://yhfag0ihx500" path="res://Assets/Spider Sprite Sheet.png" id="2_de1lh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbi0w"]
 atlas = ExtResource("2_de1lh")

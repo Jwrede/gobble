@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dw1lq1ybnrjtn"]
 
-[ext_resource type="Texture2D" uid="uid://dw4c44brwp4sl" path="res://assets/mushrooms.png" id="2_30n0b"]
+[ext_resource type="Texture2D" uid="uid://dw4c44brwp4sl" path="res://Assets/mushrooms.png" id="2_30n0b"]
 [ext_resource type="Script" path="res://Scripts/mushroom.gd" id="2_ntw65"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yanq5"]
