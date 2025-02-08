@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 GameManager="*res://Scripts/game_manager.gd"
 
+[display]
+
+mouse_cursor/custom_image="res://assets/UI/cursor_02.png"
+
 [input]
 
 left={

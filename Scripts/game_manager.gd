@@ -40,7 +40,6 @@ func _draw():
 				Color.YELLOW, false, 2.0)
 
 func mycelium_collected(value: int):
-	print("b")
 	total_mycelium += 1
 	emit_signal("mycelium_changed", total_mycelium)
 

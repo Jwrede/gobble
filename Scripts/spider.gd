@@ -38,7 +38,7 @@ func _physics_process(delta):
 			move_direction = end_position - position
 		velocity = move_direction.normalized() * speed
 	else:
-		var gnome_position = taming_gnome.global_position
+		var gnome_position = taming_gnome.get_child(1).target_position
 		var distance_to_gnome = global_position.distance_to(gnome_position)
 		if distance_to_gnome > 1:
 			velocity = (gnome_position - global_position).normalized() * (speed*2)

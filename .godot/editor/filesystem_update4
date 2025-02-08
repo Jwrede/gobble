@@ -8,3 +8,5 @@ res://Scripts/spider.gd
 res://Scripts/mushroom.gd
 res://Collectibles/mycleium_ui.gd
 res://Scenes/hud.tscn
+res://Scenes/spider.tscn
+res://Scenes/nest.tscn
