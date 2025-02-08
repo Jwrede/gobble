@@ -1,6 +1,6 @@
-class_name GameManager extends Node2D 
+extends Node2D 
 
-
+signal mycelium_changed
 var dragging = false  # Are we currently dragging?
 var selected = []  # Array of selected units.
 var drag_start = Vector2.ZERO  # Location where drag began.
@@ -40,9 +40,10 @@ func _draw():
 				Color.YELLOW, false, 2.0)
 
 func mycelium_collected(value: int):
+	print("b")
 	total_mycelium += 1
-	CollectMycelium.emit_signal("mycelium_collected", total_mycelium)
+	emit_signal("mycelium_changed", total_mycelium)
 
 func mycelium_expended(value: int):
 	total_mycelium -= 1
-	CollectMycelium.emit_signal("mycelium_collected", total_mycelium)
+	emit_signal("mycelium_changed", total_mycelium)

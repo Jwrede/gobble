@@ -1,16 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw1lq1ybnrjtn"]
+[gd_scene load_steps=4 format=3 uid="uid://dw1lq1ybnrjtn"]
 
 [ext_resource type="Script" path="res://Scripts/mushroom.gd" id="2_ntw65"]
+[ext_resource type="Texture2D" uid="uid://bc5nvjr0mosr6" path="res://assets/unused/Amanita.png" id="2_wvxd7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_707v2"]
 radius = 276.126
 
 [node name="Mushroom" type="Node2D"]
 script = ExtResource("2_ntw65")
+sprite = ExtResource("2_wvxd7")
 
 [node name="MushroomSprite" type="Sprite2D" parent="."]
 position = Vector2(-7, 209)
 scale = Vector2(0.0638134, 0.0715688)
+texture = ExtResource("2_wvxd7")
 
 [node name="Mining" type="Area2D" parent="."]
 position = Vector2(-7, 209)

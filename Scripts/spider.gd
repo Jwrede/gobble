@@ -50,9 +50,9 @@ func _physics_process(delta):
 
 func _process(delta):
 	if gnome_in_range:
-		if Input.is_action_just_pressed("Tame"):
+		if Input.is_action_just_pressed("Tame") and GameManager.total_mycelium > 0:
 			mycelium_stack = 1
-			GameController.mycelium_expended(1)
+			GameManager.mycelium_expended(1)
 			collision_mask = disable_bit(collision_mask, 7)
 			tamed = true
 			taming_gnome = gnome_in_range

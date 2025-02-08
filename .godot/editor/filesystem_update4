@@ -2,5 +2,9 @@ res://Scenes/main.tscn
 res://characters/selection.gdshader
 res://characters/outline.gdshader
 res://Scripts/game_manager.gd
-res://Scripts/mushroom.gd
+res://Scenes/mushroom.tscn
 res://characters/gnome.tscn
+res://Scripts/spider.gd
+res://Scripts/mushroom.gd
+res://Collectibles/mycleium_ui.gd
+res://Scenes/hud.tscn

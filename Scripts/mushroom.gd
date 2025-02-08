@@ -11,7 +11,8 @@ func _ready():
 func _process(_delta):
 	if gnome_in_area:
 		if Input.is_action_just_pressed("Mine"):
-			GameManager.mycelium_collected(value)
+			print("a")
+			GameManager.mycelium_collected(1)
 			value += 1
 		if value == mushroom_mycelium:
 			self.queue_free()
