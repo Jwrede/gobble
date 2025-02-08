@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://djilovqjojvbx"]
+
+[ext_resource type="Script" path="res://Collectibles/mycleium_ui.gd" id="1_qnu4i"]
+[ext_resource type="Texture2D" uid="uid://cfm1xg8jks1tu" path="res://assets/Mycelium_JE5_BE3.png" id="2_gq54j"]
+
+[node name="Mycleium UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 70.0
+offset_bottom = 70.0
+script = ExtResource("1_qnu4i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 57.0
+offset_bottom = 59.0
+texture = ExtResource("2_gq54j")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 17.0
+offset_right = 107.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 22
+text = "0"

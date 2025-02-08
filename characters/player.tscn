@@ -133,7 +133,6 @@ material = SubResource("ShaderMaterial_qaynp")
 sprite_frames = SubResource("SpriteFrames_27cli")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.998705
 centered = false
 offset = Vector2(-8, -16)
 
