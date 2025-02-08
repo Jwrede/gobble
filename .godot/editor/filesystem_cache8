@@ -1,16 +1,74 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1738871750
-camera_2d.gd::GDScript::-1::1738776575::0::1::::<>Camera2D<>::
+::res://::1739038629
 export_presets.cfg::TextFile::-1::1738836793::0::1::::<><>::
-game_manager.gd::GDScript::-1::1738830979::0::1::::<>Node2D<>::
-godot.png::CompressedTexture2D::6077140009317520573::1738827055::1738827055::1::::<><>::
-main.tscn::PackedScene::2723098200535107363::1738837507::0::1::::<><>::uid://cp8ffan6csmbm::::res://assets/Tileset.png<>uid://b3aaw5pmo811g::::res://characters/player.tscn<>res://camera_2d.gd<>res://game_manager.gd
-::res://assets/::1738826931
-Entities.png::CompressedTexture2D::320437432490868810::1738751737::1738751748::1::::<><>::
-Tileset.png::CompressedTexture2D::5894111023268366894::1738751708::1738751754::1::::<><>::
-::res://characters/::1738845984
-outline.gdshader::Shader::-1::1738845984::0::1::::<><>::
-player.gd::GDScript::-1::1738836447::0::1::::<>Node2D<>::
-player.tscn::PackedScene::4351749192461747850::1738837507::0::1::::<><>::res://characters/player.gd<>res://characters/selection.gdshader<>res://characters/outline.gdshader<>uid://eths7xyc3r3o::::res://assets/Entities.png<>res://characters/player_movement.gd<>uid://cst2uw6w05and::::res://godot.png
-player_movement.gd::GDScript::-1::1738836710::0::1::::<>CharacterBody2D<>::
-selection.gdshader::Shader::-1::1738845984::0::1::::<><>::
+godot.png::CompressedTexture2D::6077140009317520573::1738827055::1739027931::1::::<><>::
+README.md::TextFile::-1::1738872815::0::1::::<><>::
+sprite_2d.tscn::PackedScene::6203753313478200556::1739032403::0::1::::<><>::
+::res://assets/::1739048285
+Gnome.png::CompressedTexture2D::320437432490868810::1739032403::1739032419::1::::<><>::
+mushrooms.png::CompressedTexture2D::8763458313516907931::1739038611::1739038629::1::::<><>::
+Nest.png::CompressedTexture2D::5545620784578317787::1739032403::1739032419::1::::<><>::
+Tileset.png::CompressedTexture2D::5894111023268366894::1738751708::1739027931::1::::<><>::
+::res://assets/icons/::1739032419
+150px-Sweet_Berries_JE1_BE1.webp::CompressedTexture2D::2446504852272334714::1739032403::1739032419::1::::<><>::
+Metal_Scrap.webp::CompressedTexture2D::3928444031828323585::1739032403::1739032419::1::::<><>::
+Mycelium_JE5_BE3.png::CompressedTexture2D::5150178200238488978::1739032403::1739032419::1::::<><>::
+::res://assets/UI/::1739048410
+cursor_02.png::CompressedTexture2D::2236495606850972292::1739048410::1739048410::1::::<><>::
+::res://assets/unused/::1739038620
+Amanita.png::CompressedTexture2D::2589557026293245625::1739032403::1739032419::1::::<><>::
+Barbie Pagoda BG.png::CompressedTexture2D::7035076933921814905::1739032403::1739032419::1::::<><>::
+Barbie Pagoda.png::CompressedTexture2D::5339902113427287235::1739032403::1739032419::1::::<><>::
+Black Red.png::CompressedTexture2D::977774600900940314::1739032403::1739032419::1::::<><>::
+BleedingTooth.png::CompressedTexture2D::4980056192527107055::1739032403::1739032419::1::::<><>::
+Blue Oyster.png::CompressedTexture2D::4426580431312829955::1739032403::1739032419::1::::<><>::
+Blue Umbrella.png::CompressedTexture2D::3960426205440621490::1739032403::1739032419::1::::<><>::
+Bolete.png::CompressedTexture2D::8845801157106558422::1739032403::1739032419::1::::<><>::
+Chanterelle.png::CompressedTexture2D::8182113871446334271::1739032403::1739032420::1::::<><>::
+ChickenOfTheWoods.png::CompressedTexture2D::4201187974475420291::1739032403::1739032419::1::::<><>::
+DeathTrumpetDark.png::CompressedTexture2D::531469507399332918::1739032403::1739032419::1::::<><>::
+DeathTrumpetLight.png::CompressedTexture2D::7801616150836917346::1739032403::1739032419::1::::<><>::
+Gold.png::CompressedTexture2D::6694317323961332833::1739032403::1739032419::1::::<><>::
+Green Earth Tongues.png::CompressedTexture2D::3480564088104885986::1739032403::1739032419::1::::<><>::
+Honeycomb.png::CompressedTexture2D::6019682002858930973::1739032403::1739032419::1::::<><>::
+Ink.png::CompressedTexture2D::6603413474338352498::1739032403::1739032419::1::::<><>::
+Log.png::CompressedTexture2D::6362250594405613538::1739032403::1739032419::1::::<><>::
+Morel.png::CompressedTexture2D::3475778200418744873::1739032403::1739032419::1::::<><>::
+Orange.png::CompressedTexture2D::6240722041854295324::1739032403::1739032419::1::::<><>::
+phillipsia subpurpurea.png::CompressedTexture2D::7253633287043375919::1739032403::1739032419::1::::<><>::
+Pinwheel.png::CompressedTexture2D::4547754733756652875::1739032403::1739032419::1::::<><>::
+Purple.png::CompressedTexture2D::3955526489545360103::1739032403::1739032419::1::::<><>::
+SlimeMold.png::CompressedTexture2D::8552996704558688570::1739032403::1739032419::1::::<><>::
+Small Red Purple.png::CompressedTexture2D::658326764199221713::1739032403::1739032419::1::::<><>::
+Tendrils.png::CompressedTexture2D::8766353751821929260::1739032403::1739032419::1::::<><>::
+Tiny Red.png::CompressedTexture2D::938213144175798508::1739032403::1739032419::1::::<><>::
+Violet Cort BG.png::CompressedTexture2D::7641586240216314890::1739032403::1739032420::1::::<><>::
+Violet Cort.png::CompressedTexture2D::602973628442248610::1739032403::1739032420::1::::<><>::
+Wedding Veil.png::CompressedTexture2D::6875159962688974027::1739032403::1739032419::1::::<><>::
+::res://characters/::1739045355
+gnome.gd::GDScript::-1::1739032403::0::1::::<>Node2D<>::
+gnome.tscn::PackedScene::4351749192461747850::1739045355::0::1::::<><>::res://characters/gnome.gd<>res://characters/selection.gdshader<>res://characters/outline.gdshader<>uid://eths7xyc3r3o::::res://assets/Gnome.png<>res://characters/player_movement.gd<>uid://cst2uw6w05and::::res://godot.png
+grant-woolley-new-gnomes-animation-demo.png::CompressedTexture2D::6600823749867745543::1739027915::1739027931::1::::<><>::
+ItemsInsectA.png::CompressedTexture2D::7768939626546211472::1739027915::1739027931::1::::<><>::
+Item_Sheet_Flora&Fauna_0.png::CompressedTexture2D::8046866410598174638::1739027915::1739027931::1::::<><>::
+outline.gdshader::Shader::-1::1739045355::0::1::::<><>::
+player_movement.gd::GDScript::-1::1739032403::0::1::::Gnome<>CharacterBody2D<>::
+selection.gdshader::Shader::-1::1739045355::0::1::::<><>::
+Spider Sprite Sheet.png::CompressedTexture2D::1699286830689016523::1739032403::1739032419::1::::<><>::
+::res://Collectibles/::1739034978
+food.tscn::PackedScene::2607803577850977634::1739032403::0::1::::<><>::uid://ba4dtvtg1alx7::::res://assets/icons/150px-Sweet_Berries_JE1_BE1.webp
+mycleium_ui.gd::GDScript::-1::1739034978::0::1::::<>Control<>::
+mycleium_ui.tscn::PackedScene::7808170682024401749::1739032403::0::1::::<><>::res://Collectibles/mycleium_ui.gd<>uid://cfm1xg8jks1tu::::res://assets/icons/Mycelium_JE5_BE3.png
+scrap_ui.tscn::PackedScene::7238393598180000181::1739032403::0::1::::<><>::uid://bv775tsf7wqsn::::res://assets/icons/Metal_Scrap.webp
+::res://Scenes/::1739045355
+hud.tscn::PackedScene::3929944903899064272::1739045355::0::1::::<><>::uid://djilovqjojvbx::::res://Collectibles/mycleium_ui.tscn<>uid://bdfie5myukby5::::res://Collectibles/food.tscn<>uid://dbeljxqn2ex4p::::res://Collectibles/scrap_ui.tscn
+main.tscn::PackedScene::2723098200535107363::1739045355::0::1::::<><>::uid://cp8ffan6csmbm::::res://assets/Tileset.png<>uid://dw1lq1ybnrjtn::::res://Scenes/mushroom.tscn<>uid://b3aaw5pmo811g::::res://characters/gnome.tscn<>uid://dmae3rmxmf5t5::::res://Scenes/nest.tscn<>uid://cmt7h2vfpi6tx::::res://Scenes/spider.tscn<>res://Scripts/camera_2d.gd<>res://Scripts/game_manager.gd<>uid://bv8xva4nuyrx5::::res://Scenes/hud.tscn
+mushroom.tscn::PackedScene::8757788295090375983::1739045355::0::1::::<><>::uid://dw4c44brwp4sl::::res://assets/mushrooms.png<>res://Scripts/mushroom.gd
+nest.tscn::PackedScene::8001821957431982820::1739045355::0::1::::<><>::uid://claltgdixkh3h::::res://assets/Nest.png<>res://Scripts/nest.gd
+spider.tscn::PackedScene::5656287563514507305::1739045355::0::1::::<><>::res://Scripts/spider.gd<>uid://yhfag0ihx500::::res://characters/Spider Sprite Sheet.png
+::res://Scripts/::1739045070
+camera_2d.gd::GDScript::-1::1739032403::0::1::::<>Camera2D<>::
+game_manager.gd::GDScript::-1::1739044648::0::1::::<>Node2D<>::
+mushroom.gd::GDScript::-1::1739044648::0::1::::Mushroom<>Node2D<>::
+nest.gd::GDScript::-1::1739032403::0::1::::<>Node2D<>::
+spider.gd::GDScript::-1::1739045070::0::1::::<>CharacterBody2D<>::

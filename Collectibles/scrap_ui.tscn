@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbeljxqn2ex4p"]
+
+[ext_resource type="Texture2D" uid="uid://bv775tsf7wqsn" path="res://assets/icons/Metal_Scrap.webp" id="1_0fjol"]
+
+[node name="scrap_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 65.0
+offset_bottom = 81.0
+texture = ExtResource("1_0fjol")
+expand_mode = 5
+
+[node name="Label_SCrap" type="Label" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 28.0
+offset_right = 109.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 22
+text = "0"

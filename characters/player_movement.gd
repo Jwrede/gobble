@@ -1,9 +1,9 @@
-extends CharacterBody2D
+class_name Gnome extends CharacterBody2D
 
 signal selected_toggle
 signal waypoint_changed
 
-const SPEED = 300.0
+const SPEED = 700.0
 const JUMP_VELOCITY = -400.0
 const ran = 10
 var selected = false:
@@ -37,11 +37,11 @@ func _physics_process(_delta: float) -> void:
 	if not $NavigationAgent2D.is_navigation_finished():
 		var direction = global_position.direction_to($NavigationAgent2D.get_next_path_position()).normalized()
 		
-		velocity = direction * 50
+		velocity = direction * 60
 		facing = direction.x < 0
-		$AnimatedSprite2D.animation = "run"
+		$AnimatedSprite2D.play("run")
 		move_and_slide()
 	else:
 		velocity = Vector2(0,0)
-		$AnimatedSprite2D.animation = "idle"
+		$AnimatedSprite2D.play("idle")
 	queue_redraw() 
