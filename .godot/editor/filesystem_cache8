@@ -1,16 +1,19 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1738968340
-bee.gd::GDScript::-1::1738968099::0::1::::<>CharacterBody2D<>::
-bee.tscn::PackedScene::5656287563514507305::1738968076::0::1::::<><>::res://bee.gd<>uid://dy83onmcvw4lo::::res://characters/bee.png
-blue_mushroom.gd::GDScript::-1::1738957079::0::1::::mushroom<>Node2D<>::
-blue_mushroom.tscn::PackedScene::8757788295090375983::1738968076::0::1::::<><>::uid://bwopv18aduxf3::::res://assets/Blue Umbrella.png<>res://blue_mushroom.gd
+::res://::1739013009
+bee.gd::GDScript::-1::1738974398::0::1::::<>CharacterBody2D<>::
+bee.tscn::PackedScene::5656287563514507305::1738974557::0::1::::<><>::res://bee.gd<>uid://dy83onmcvw4lo::::res://characters/bee.png
+blue_mushroom.gd::GDScript::-1::1738970056::0::1::::mushroom<>Node2D<>::
+blue_mushroom.tscn::PackedScene::8757788295090375983::1738974474::0::1::::<><>::uid://bwopv18aduxf3::::res://assets/Blue Umbrella.png<>res://blue_mushroom.gd
 camera_2d.gd::GDScript::-1::1738968231::0::1::::<>Camera2D<>::
 export_presets.cfg::TextFile::-1::1738873470::0::1::::<><>::
 game_manager.gd::GDScript::-1::1738968231::0::1::::<>Node2D<>::
 godot.png::CompressedTexture2D::6077140009317520573::1738873470::1738873489::1::::<><>::
-hud.tscn::PackedScene::3929944903899064272::1738968076::0::1::::<><>::uid://djilovqjojvbx::::res://Collectibles/mycleium_ui.tscn<>uid://bdfie5myukby5::::res://Collectibles/food.tscn<>uid://dbeljxqn2ex4p::::res://Collectibles/scrap_ui.tscn
-main.tscn::PackedScene::2723098200535107363::1738968099::0::1::::<><>::uid://cp8ffan6csmbm::::res://assets/Tileset.png<>uid://dw1lq1ybnrjtn::::res://blue_mushroom.tscn<>uid://bwopv18aduxf3::::res://assets/Blue Umbrella.png<>uid://b3aaw5pmo811g::::res://characters/player.tscn<>res://Scripts/camera_2d.gd<>uid://bc5nvjr0mosr6::::res://assets/Amanita.png<>res://Scripts/game_manager.gd<>uid://bprxtamtnas22::::res://assets/Morel.png<>uid://bv8xva4nuyrx5::::res://hud.tscn<>uid://b4cjeryltsfvf::::res://assets/Blue Oyster.png<>uid://cmt7h2vfpi6tx::::res://bee.tscn
+hud.tscn::PackedScene::3929944903899064272::1738974474::0::1::::<><>::uid://djilovqjojvbx::::res://Collectibles/mycleium_ui.tscn<>uid://bdfie5myukby5::::res://Collectibles/food.tscn<>uid://dbeljxqn2ex4p::::res://Collectibles/scrap_ui.tscn
+main.tscn::PackedScene::2723098200535107363::1738974577::0::1::::<><>::uid://cp8ffan6csmbm::::res://assets/Tileset.png<>uid://dw1lq1ybnrjtn::::res://blue_mushroom.tscn<>uid://b3aaw5pmo811g::::res://characters/player.tscn<>res://Scripts/camera_2d.gd<>uid://dt0fkixt42m31::::res://red_mushroom.tscn<>res://Scripts/game_manager.gd<>uid://b8o181omg7rri::::res://purple_mushroom.tscn<>uid://bv8xva4nuyrx5::::res://hud.tscn<>uid://dm5msud167mdw::::res://morel_mushroom.tscn<>uid://cmt7h2vfpi6tx::::res://bee.tscn
+morel_mushroom.tscn::PackedScene::8064221311886406044::1738974474::0::1::::<><>::res://blue_mushroom.gd<>uid://bprxtamtnas22::::res://assets/Morel.png
+purple_mushroom.tscn::PackedScene::4733192773104682862::1738974474::0::1::::<><>::res://blue_mushroom.gd<>uid://b4cjeryltsfvf::::res://assets/Blue Oyster.png
 README.md::TextFile::-1::1738873470::0::1::::<><>::
+red_mushroom.tscn::PackedScene::8544781423576699722::1738974474::0::1::::<><>::res://blue_mushroom.gd<>uid://bc5nvjr0mosr6::::res://assets/Amanita.png
 sprite_2d.tscn::PackedScene::5601961712916829596::1738942027::0::1::::<><>::
 ::res://assets/::1738968281
 150px-Sweet_Berries_JE1_BE1.webp::CompressedTexture2D::2446504852272334714::1738946530::1738946562::1::::<><>::
@@ -47,25 +50,25 @@ Tiny Red.png::CompressedTexture2D::938213144175798508::1738940831::1738940990::1
 Violet Cort BG.png::CompressedTexture2D::7641586240216314890::1738940831::1738940991::1::::<><>::
 Violet Cort.png::CompressedTexture2D::602973628442248610::1738940831::1738940991::1::::<><>::
 Wedding Veil.png::CompressedTexture2D::6875159962688974027::1738940831::1738940990::1::::<><>::
-::res://characters/::1738968281
+::res://characters/::1738974580
 bee.png::CompressedTexture2D::8913644542649219896::1738966171::1738966176::1::::<><>::
 grant-woolley-new-gnomes-animation-demo.png::CompressedTexture2D::6600823749867745543::1738942826::1738942840::1::::<><>::
 ItemsInsectA.png::CompressedTexture2D::7768939626546211472::1738955195::1738955201::1::::<><>::
 Item_Sheet_Flora&Fauna_0.png::CompressedTexture2D::8046866410598174638::1738955112::1738955126::1::::<><>::
-outline.gdshader::Shader::-1::1738968099::0::1::::<><>::
+outline.gdshader::Shader::-1::1738974580::0::1::::<><>::
 player.gd::GDScript::-1::1738956497::0::1::::<>Node2D<>::
-player.tscn::PackedScene::4351749192461747850::1738968076::0::1::::<><>::res://characters/player.gd<>res://characters/selection.gdshader<>res://characters/outline.gdshader<>uid://eths7xyc3r3o::::res://assets/Entities.png<>res://characters/player_movement.gd<>uid://cst2uw6w05and::::res://godot.png
+player.tscn::PackedScene::4351749192461747850::1738974473::0::1::::<><>::res://characters/player.gd<>res://characters/selection.gdshader<>res://characters/outline.gdshader<>uid://eths7xyc3r3o::::res://assets/Entities.png<>res://characters/player_movement.gd<>uid://cst2uw6w05and::::res://godot.png
 player_movement.gd::GDScript::-1::1738956490::0::1::::Player<>CharacterBody2D<>::
-selection.gdshader::Shader::-1::1738968099::0::1::::<><>::
-::res://Collectibles/::1738968281
-food.tscn::PackedScene::2607803577850977634::1738968076::0::1::::<><>::uid://ba4dtvtg1alx7::::res://assets/150px-Sweet_Berries_JE1_BE1.webp
+selection.gdshader::Shader::-1::1738974580::0::1::::<><>::
+::res://Collectibles/::1738974474
+food.tscn::PackedScene::2607803577850977634::1738974474::0::1::::<><>::uid://ba4dtvtg1alx7::::res://assets/150px-Sweet_Berries_JE1_BE1.webp
 mycleium_ui.gd::GDScript::-1::1738945645::0::1::::<>Control<>::
-mycleium_ui.tscn::PackedScene::7808170682024401749::1738968076::0::1::::<><>::res://Collectibles/mycleium_ui.gd<>uid://cfm1xg8jks1tu::::res://assets/Mycelium_JE5_BE3.png
-scrap_ui.tscn::PackedScene::7238393598180000181::1738968076::0::1::::<><>::uid://bv775tsf7wqsn::::res://assets/Metal_Scrap.webp
-::res://Scripts/::1738968281
+mycleium_ui.tscn::PackedScene::7808170682024401749::1738974474::0::1::::<><>::res://Collectibles/mycleium_ui.gd<>uid://cfm1xg8jks1tu::::res://assets/Mycelium_JE5_BE3.png
+scrap_ui.tscn::PackedScene::7238393598180000181::1738974474::0::1::::<><>::uid://bv775tsf7wqsn::::res://assets/Metal_Scrap.webp
+::res://Scripts/::1738974343
 blue_mushroom.gd::GDScript::-1::1738943669::0::1::::<>Sprite2D<>::
 camera_2d.gd::GDScript::-1::1738873470::0::1::::<>Camera2D<>::
 collect_mycelium.gd::GDScript::-1::1738946073::0::1::::<>Node<>::
 EventController.gd::GDScript::-1::1738944321::0::1::::<>Node<>::
-game_controller.gd::GDScript::-1::1738944847::0::1::::<>Node<>::
+game_controller.gd::GDScript::-1::1738974343::0::1::::<>Node<>::
 game_manager.gd::GDScript::-1::1738873470::0::1::::<>Node2D<>::

@@ -8,9 +8,6 @@ res://Collectibles/mycleium_ui.tscn
 res://Collectibles/food.tscn
 res://Collectibles/scrap_ui.tscn
 res://bee.tscn
-res://bee.gd
-res://blue_mushroom.gd
 res://red_mushroom.tscn
 res://purple_mushroom.tscn
 res://morel_mushroom.tscn
-res://Scripts/game_controller.gd
