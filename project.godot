@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-GameManager="*res://Scripts/game_manager.gd"
+GameState="*res://Scripts/game_state.gd"
 
 [display]
 

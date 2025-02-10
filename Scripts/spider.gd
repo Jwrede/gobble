@@ -1,12 +1,13 @@
-extends CharacterBody2D
+class_name Insect extends CharacterBody2D
 
+var tamed = false
 @export var speed = 20
 @export var limit = 5.0
 @export var min_distance = 5
 @export var max_distance = 25
-@export var tamed = false
+@export var cost = 1
 
-var gnome_in_range : Gnome = null
+var gnomes_in_range : Array[Gnome] = []
 var taming_gnome : Gnome = null
 
 var mycelium_stack = 0
@@ -48,28 +49,14 @@ func _physics_process(delta):
 	facing = velocity.x > 0
 	move_and_slide()
 
-func _process(delta):
-	if gnome_in_range:
-		if Input.is_action_just_pressed("Tame") and GameManager.total_mycelium > 0:
-			mycelium_stack = 1
-			GameManager.mycelium_expended(1)
-			collision_mask = disable_bit(collision_mask, 7)
-			tamed = true
-			taming_gnome = gnome_in_range
-			$tame_timer.start()
+func tame(gnome):
+	collision_mask = disable_bit(collision_mask, 7)
+	tamed = true
+	taming_gnome = gnome
+
+func remove_tame():
+	tamed = false
+	taming_gnome = null
 
 func disable_bit(mask: int, index: int) -> int:
 	return mask & ~(1 << index)
-
-func _on_area_2d_body_entered(body):
-	if body is Gnome:
-		gnome_in_range = body
-		
-
-func _on_area_2d_body_exited(body):
-	if body is Gnome:
-		gnome_in_range = null
-
-func _on_tame_timer_timeout():
-	if tamed:
-		tamed = false

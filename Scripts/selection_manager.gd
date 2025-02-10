@@ -10,7 +10,6 @@ func _unhandled_input(event):
 		if event.pressed:
 			dragging = true
 			drag_start = get_global_mouse_position()
-			print(selected)
 			for item in selected:
 				item.collider.selected = false
 			selected = []

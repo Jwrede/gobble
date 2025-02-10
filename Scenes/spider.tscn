@@ -104,9 +104,6 @@ height = 8.0
 collision_mask = 129
 script = ExtResource("1_byyrv")
 
-[node name="tame_timer" type="Timer" parent="."]
-wait_time = 300.0
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_dytxy")
@@ -125,6 +122,5 @@ shape = SubResource("CircleShape2D_hsohs")
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_fkrk1")
 
-[connection signal="timeout" from="tame_timer" to="." method="_on_tame_timer_timeout"]
 [connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,11 +1,11 @@
+Timer
+CollisionShape2D
+Area2D
+Marker2D
 Node2D
 Node
-CollisionShape2D
 StaticBody2D
-Marker2D
-Timer
 AnimatedSprite2D
-Area2D
 AnimatableBody2D
 CharacterBody2D
 Sprite2D

@@ -9,13 +9,13 @@
 [node name="Mycleium UI" parent="." instance=ExtResource("1_0ftrs")]
 
 [node name="food_ui" parent="." instance=ExtResource("2_w7a8v")]
-offset_left = 136.0
-offset_top = 28.0
-offset_right = 176.0
-offset_bottom = 68.0
+offset_left = 23.0
+offset_top = 102.0
+offset_right = 63.0
+offset_bottom = 142.0
 
 [node name="scrap_ui" parent="." instance=ExtResource("3_aw5ek")]
-offset_left = 263.0
-offset_top = 17.0
-offset_right = 306.0
-offset_bottom = 65.0
+offset_left = 35.0
+offset_top = 171.0
+offset_right = 78.0
+offset_bottom = 219.0

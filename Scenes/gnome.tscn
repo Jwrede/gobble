@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b3aaw5pmo811g"]
+[gd_scene load_steps=21 format=3 uid="uid://b3aaw5pmo811g"]
 
 [ext_resource type="Script" path="res://Scripts/Gnome/gnome_parent.gd" id="1_ge1v0"]
 [ext_resource type="Texture2D" uid="uid://eths7xyc3r3o" path="res://Assets/Gnome.png" id="1_wl7an"]
@@ -105,6 +105,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdgbw"]
+radius = 16.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vk3wf"]
 shader = ExtResource("5_wkn5y")
 shader_parameter/ring_radius = 0.44
@@ -117,7 +120,7 @@ shader_parameter/lerp_color = Color(1, 1, 1, 1)
 [node name="Character" type="Node2D"]
 script = ExtResource("1_ge1v0")
 
-[node name="GnomeBody" type="CharacterBody2D" parent="."]
+[node name="Gnome" type="CharacterBody2D" parent="."]
 use_parent_material = true
 position = Vector2(0, -8)
 collision_layer = 3
@@ -125,21 +128,29 @@ collision_mask = 3
 input_pickable = true
 script = ExtResource("2_34ve6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GnomeBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gnome"]
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_ed6mq")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="GnomeBody"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Gnome"]
 path_desired_distance = 1.0
 target_desired_distance = 2.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GnomeBody"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Gnome"]
 material = SubResource("ShaderMaterial_qaynp")
 sprite_frames = SubResource("SpriteFrames_27cli")
-animation = &"new_animation"
+animation = &"idle"
 autoplay = "idle"
 centered = false
 offset = Vector2(-8, -16)
+
+[node name="Area2D" type="Area2D" parent="Gnome"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gnome/Area2D"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_fdgbw")
+
+[node name="TameTimeout" type="Timer" parent="Gnome"]
 
 [node name="Waypoint" type="Sprite2D" parent="."]
 visible = false
@@ -149,5 +160,8 @@ position = Vector2(0, -10)
 scale = Vector2(0.226118, 0.0781745)
 texture = ExtResource("4_1s35n")
 
-[connection signal="selected_toggle" from="GnomeBody" to="." method="_on_player_body_selected_toggle"]
-[connection signal="waypoint_changed" from="GnomeBody" to="." method="_on_player_body_waypoint_changed"]
+[connection signal="selected_toggle" from="Gnome" to="." method="_on_player_body_selected_toggle"]
+[connection signal="waypoint_changed" from="Gnome" to="." method="_on_player_body_waypoint_changed"]
+[connection signal="body_entered" from="Gnome/Area2D" to="Gnome" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Gnome/Area2D" to="Gnome" method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Gnome/TameTimeout" to="Gnome" method="_on_tame_timeout_timeout"]
