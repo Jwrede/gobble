@@ -1,8 +1,8 @@
-res://Scenes/main.tscn
+res://Scenes/gnome.tscn
 res://Shader/outline.gdshader
 res://Shader/selection.gdshader
 res://Scenes/mushroom.tscn
-res://Scenes/gnome.tscn
-res://Scenes/hud.tscn
 res://Scenes/spider.tscn
-res://Scenes/nest.tscn
+res://Scripts/Gnome/gnome.gd
+res://Scenes/setup.gd
+res://Scenes/main.tscn

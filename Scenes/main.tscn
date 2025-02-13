@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://be2dbad8sfwit"]
+[gd_scene load_steps=18 format=4 uid="uid://be2dbad8sfwit"]
 
 [ext_resource type="Script" path="res://Scenes/setup.gd" id="1_8gkxv"]
 [ext_resource type="Texture2D" uid="uid://cp8ffan6csmbm" path="res://Assets/Tileset.png" id="1_57oqx"]
 [ext_resource type="PackedScene" uid="uid://dw1lq1ybnrjtn" path="res://Scenes/mushroom.tscn" id="2_gfohl"]
+[ext_resource type="Shader" path="res://Shader/outline.gdshader" id="4_cijfq"]
 [ext_resource type="PackedScene" uid="uid://dmae3rmxmf5t5" path="res://Scenes/nest.tscn" id="7_wvls3"]
 [ext_resource type="PackedScene" uid="uid://cmt7h2vfpi6tx" path="res://Scenes/spider.tscn" id="8_n8blm"]
 [ext_resource type="Script" path="res://Scripts/selection_manager.gd" id="9_f8uri"]
@@ -176,6 +177,38 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(141, 166, 152, 174, 332
 parsed_geometry_type = 0
 agent_radius = 0.01
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m7sbp"]
+resource_local_to_scene = true
+shader = ExtResource("4_cijfq")
+shader_parameter/width = 0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/flickering_speed = null
+shader_parameter/minimal_flickering_alpha = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lscgb"]
+resource_local_to_scene = true
+shader = ExtResource("4_cijfq")
+shader_parameter/width = 0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/flickering_speed = null
+shader_parameter/minimal_flickering_alpha = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o8j15"]
+resource_local_to_scene = true
+shader = ExtResource("4_cijfq")
+shader_parameter/width = 0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/flickering_speed = null
+shader_parameter/minimal_flickering_alpha = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eqd1m"]
+resource_local_to_scene = true
+shader = ExtResource("4_cijfq")
+shader_parameter/width = 0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/flickering_speed = null
+shader_parameter/minimal_flickering_alpha = null
+
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("gnome_spawn_parent_node", "spawn_point")]
 script = ExtResource("1_8gkxv")
 gnome_spawn_parent_node = NodePath("Tilemap/Gnomes")
@@ -197,39 +230,43 @@ navigation_polygon = SubResource("NavigationPolygon_d7puk")
 [node name="Shrooms" type="Node" parent="Tilemap"]
 
 [node name="Mushroom" parent="Tilemap/Shrooms" instance=ExtResource("2_gfohl")]
-position = Vector2(1, -187)
+position = Vector2(0, 20)
 
 [node name="Mushroom3" parent="Tilemap/Shrooms" instance=ExtResource("2_gfohl")]
-position = Vector2(7, -186)
+position = Vector2(6, 21)
 
 [node name="Mushroom4" parent="Tilemap/Shrooms" instance=ExtResource("2_gfohl")]
-position = Vector2(7, -182)
+position = Vector2(6, 25)
 
 [node name="Mushroom5" parent="Tilemap/Shrooms" instance=ExtResource("2_gfohl")]
-position = Vector2(1, -183)
+position = Vector2(0, 24)
 
 [node name="Mushroom2" parent="Tilemap/Shrooms" instance=ExtResource("2_gfohl")]
-position = Vector2(58, -219)
+position = Vector2(57, -12)
 
 [node name="MushroomSprite" parent="Tilemap/Shrooms/Mushroom2" index="0"]
+material = SubResource("ShaderMaterial_m7sbp")
 region_rect = Rect2(0, 32, 16, 16)
 
 [node name="Mushroom6" parent="Tilemap/Shrooms" instance=ExtResource("2_gfohl")]
-position = Vector2(63, -215)
+position = Vector2(62, -8)
 
 [node name="MushroomSprite" parent="Tilemap/Shrooms/Mushroom6" index="0"]
+material = SubResource("ShaderMaterial_lscgb")
 region_rect = Rect2(0, 32, 16, 16)
 
 [node name="Mushroom7" parent="Tilemap/Shrooms" instance=ExtResource("2_gfohl")]
-position = Vector2(56, -213)
+position = Vector2(55, -6)
 
 [node name="MushroomSprite" parent="Tilemap/Shrooms/Mushroom7" index="0"]
+material = SubResource("ShaderMaterial_o8j15")
 region_rect = Rect2(0, 32, 16, 16)
 
 [node name="Mushroom8" parent="Tilemap/Shrooms" instance=ExtResource("2_gfohl")]
-position = Vector2(62, -211)
+position = Vector2(61, -4)
 
 [node name="MushroomSprite" parent="Tilemap/Shrooms/Mushroom8" index="0"]
+material = SubResource("ShaderMaterial_eqd1m")
 region_rect = Rect2(0, 32, 16, 16)
 
 [node name="Gnomes" type="Node" parent="Tilemap"]

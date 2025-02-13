@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1739219967
+::res://::1739454687
 export_presets.cfg::TextFile::-1::1738836793::0::1::::<><>::
 godot.png::CompressedTexture2D::6077140009317520573::1738827055::1739027931::1::::<><>::
 README.md::TextFile::-1::1738872815::0::1::::<><>::
@@ -49,29 +49,31 @@ Tiny Red.png::CompressedTexture2D::938213144175798508::1739032403::1739049314::1
 Violet Cort BG.png::CompressedTexture2D::7641586240216314890::1739032403::1739049315::1::::<><>::
 Violet Cort.png::CompressedTexture2D::602973628442248610::1739032403::1739049315::1::::<><>::
 Wedding Veil.png::CompressedTexture2D::6875159962688974027::1739032403::1739049314::1::::<><>::
-::res://Collectibles/::1739103843
+::res://Collectibles/::1739439790
 food.tscn::PackedScene::2607803577850977634::1739049314::0::1::::<><>::uid://ba4dtvtg1alx7::::res://Assets/icons/150px-Sweet_Berries_JE1_BE1.webp
-mycleium_ui.gd::GDScript::-1::1739103843::0::1::::<>Control<>::
+mycleium_ui.gd::GDScript::-1::1739439790::0::1::::<>Control<>::
 mycleium_ui.tscn::PackedScene::7808170682024401749::1739049314::0::1::::<><>::res://Collectibles/mycleium_ui.gd<>uid://cfm1xg8jks1tu::::res://Assets/icons/Mycelium_JE5_BE3.png
 scrap_ui.tscn::PackedScene::7238393598180000181::1739049314::0::1::::<><>::uid://bv775tsf7wqsn::::res://Assets/icons/Metal_Scrap.webp
-::res://Scenes/::1739177402
-gnome.tscn::PackedScene::4351749192461747850::1739177402::0::1::::<><>::res://Scripts/Gnome/gnome_parent.gd<>uid://eths7xyc3r3o::::res://Assets/Gnome.png<>res://Scripts/Gnome/gnome.gd<>res://Shader/outline.gdshader<>uid://cst2uw6w05and::::res://godot.png<>res://Shader/selection.gdshader
-hud.tscn::PackedScene::3929944903899064272::1739103886::0::1::::<><>::uid://djilovqjojvbx::::res://Collectibles/mycleium_ui.tscn<>uid://bdfie5myukby5::::res://Collectibles/food.tscn<>uid://dbeljxqn2ex4p::::res://Collectibles/scrap_ui.tscn
-main.tscn::PackedScene::2723098200535107363::1739103886::0::1::::<><>::res://Scenes/setup.gd<>uid://cp8ffan6csmbm::::res://Assets/Tileset.png<>uid://dw1lq1ybnrjtn::::res://Scenes/mushroom.tscn<>uid://dmae3rmxmf5t5::::res://Scenes/nest.tscn<>uid://cmt7h2vfpi6tx::::res://Scenes/spider.tscn<>res://Scripts/selection_manager.gd<>res://Scripts/camera_2d.gd<>res://Scripts/game_state.gd<>uid://bv8xva4nuyrx5::::res://Scenes/hud.tscn
-mushroom.tscn::PackedScene::8757788295090375983::1739103886::0::1::::<><>::uid://dw4c44brwp4sl::::res://Assets/mushrooms.png<>res://Scripts/mushroom.gd
-nest.tscn::PackedScene::8001821957431982820::1739103886::0::1::::<><>::uid://claltgdixkh3h::::res://Assets/Nest.png<>res://Scripts/nest.gd
+::res://Scenes/::1739454443
+gnome.tscn::PackedScene::4351749192461747850::1739454443::0::1::::<><>::res://Scripts/Gnome/gnome_parent.gd<>uid://eths7xyc3r3o::::res://Assets/Gnome.png<>res://Scripts/Gnome/gnome.gd<>res://Shader/outline.gdshader<>uid://cst2uw6w05and::::res://godot.png<>res://Shader/selection.gdshader
+hud.tscn::PackedScene::3929944903899064272::1739449348::0::1::::<><>::uid://djilovqjojvbx::::res://Collectibles/mycleium_ui.tscn<>uid://bdfie5myukby5::::res://Collectibles/food.tscn<>uid://dbeljxqn2ex4p::::res://Collectibles/scrap_ui.tscn
+main.tscn::PackedScene::2723098200535107363::1739449347::0::1::::<><>::res://Scenes/setup.gd<>uid://cp8ffan6csmbm::::res://Assets/Tileset.png<>uid://dw1lq1ybnrjtn::::res://Scenes/mushroom.tscn<>res://Shader/outline.gdshader<>uid://dmae3rmxmf5t5::::res://Scenes/nest.tscn<>uid://cmt7h2vfpi6tx::::res://Scenes/spider.tscn<>res://Scripts/selection_manager.gd<>res://Scripts/camera_2d.gd<>res://Scripts/game_state.gd<>uid://bv8xva4nuyrx5::::res://Scenes/hud.tscn
+mushroom.tscn::PackedScene::8757788295090375983::1739454443::0::1::::<><>::uid://dw4c44brwp4sl::::res://Assets/mushrooms.png<>res://Shader/outline.gdshader<>res://Scripts/mushroom.gd
+nest.tscn::PackedScene::8001821957431982820::1739449348::0::1::::<><>::uid://claltgdixkh3h::::res://Assets/Nest.png<>res://Scripts/nest.gd
 setup.gd::GDScript::-1::1739103752::0::1::::<>Node2D<>::
-spider.tscn::PackedScene::5656287563514507305::1739103886::0::1::::<><>::res://Scripts/spider.gd<>uid://yhfag0ihx500::::res://Assets/Spider Sprite Sheet.png
-::res://Scripts/::1739103758
+spider.tscn::PackedScene::5656287563514507305::1739454443::0::1::::<><>::res://Scripts/spider.gd<>uid://yhfag0ihx500::::res://Assets/Spider Sprite Sheet.png<>res://Shader/outline.gdshader
+::res://Scripts/::1739453504
 camera_2d.gd::GDScript::-1::1739032403::0::1::::<>Camera2D<>::
 game_state.gd::GDScript::-1::1739103544::0::1::::<>Node2D<>::
-mushroom.gd::GDScript::-1::1739103758::0::1::::Mushroom<>Node2D<>::
+harvestable_resource.gd::GDScript::-1::1739448231::0::1::::HarvestableResource<>Node2D<>::
+insect.gd::GDScript::-1::1739451686::0::1::::Insect<>CharacterBody2D<>::
+mushroom.gd::GDScript::-1::1739449457::0::1::::Mushroom<>HarvestableResource<>::
 nest.gd::GDScript::-1::1739032403::0::1::::<>Node2D<>::
 selection_manager.gd::GDScript::-1::1739100427::0::1::::<>Node2D<>::
-spider.gd::GDScript::-1::1739102717::0::1::::Insect<>CharacterBody2D<>::
-::res://Scripts/Gnome/::1739177402
-gnome.gd::GDScript::-1::1739177402::0::1::::Gnome<>CharacterBody2D<>::
-gnome_parent.gd::GDScript::-1::1739100366::0::1::::<>Node2D<>::
-::res://Shader/::1739177404
-outline.gdshader::Shader::-1::1739177404::0::1::::<><>::
-selection.gdshader::Shader::-1::1739177404::0::1::::<><>::
+spider.gd::GDScript::-1::1739453504::0::1::::Spider<>Insect<>::
+::res://Scripts/Gnome/::1739454443
+gnome.gd::GDScript::-1::1739454443::0::1::::Gnome<>CharacterBody2D<>::
+gnome_parent.gd::GDScript::-1::1739443407::0::1::::<>Node2D<>::
+::res://Shader/::1739454443
+outline.gdshader::Shader::-1::1739454443::0::1::::<><>::
+selection.gdshader::Shader::-1::1739454443::0::1::::<><>::

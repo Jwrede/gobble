@@ -1,30 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw1lq1ybnrjtn"]
+[gd_scene load_steps=6 format=3 uid="uid://dw1lq1ybnrjtn"]
 
 [ext_resource type="Texture2D" uid="uid://dw4c44brwp4sl" path="res://Assets/mushrooms.png" id="2_30n0b"]
+[ext_resource type="Shader" path="res://Shader/outline.gdshader" id="2_h107j"]
 [ext_resource type="Script" path="res://Scripts/mushroom.gd" id="2_ntw65"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yanq5"]
+resource_local_to_scene = true
+shader = ExtResource("2_h107j")
+shader_parameter/width = 0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/flickering_speed = null
+shader_parameter/minimal_flickering_alpha = null
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_707v2"]
-radius = 276.126
+[sub_resource type="CircleShape2D" id="CircleShape2D_4oblo"]
+radius = 5.0
 
 [node name="Mushroom" type="Node2D"]
 script = ExtResource("2_ntw65")
 
 [node name="MushroomSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yanq5")
-position = Vector2(-7, 209)
+position = Vector2(-4, -4)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_30n0b")
+centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Mining" type="Area2D" parent="."]
-position = Vector2(-7, 209)
-scale = Vector2(0.0638134, 0.0715688)
+[node name="ResourceArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mining"]
-shape = SubResource("CircleShape2D_707v2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ResourceArea"]
+shape = SubResource("CircleShape2D_4oblo")
 
-[connection signal="body_entered" from="Mining" to="." method="_on_mining_body_entered"]
-[connection signal="body_exited" from="Mining" to="." method="_on_mining_body_exited"]
+[node name="RespawnTimer" type="Timer" parent="."]
+
+[connection signal="mouse_entered" from="ResourceArea" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="ResourceArea" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

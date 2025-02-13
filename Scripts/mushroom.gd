@@ -1,23 +1,32 @@
-class_name Mushroom extends Node2D
+class_name Mushroom extends HarvestableResource
 
-@export var value: int = 1
-var mushroom_mycelium: int = 6
-var gnome_in_area = false
+var respawn_time = 15
 
-func _process(_delta):
-	if gnome_in_area:
-		if Input.is_action_just_pressed("Mine"):
-			GameState.mycelium_collected(1)
-			value += 1
-		if value == mushroom_mycelium:
-			self.queue_free()
-		else:
-			pass
-			
-func _on_mining_body_entered(body):
-	if body is Gnome:
-		gnome_in_area = true
+func _init():
+	resources_start = 3
+	resources_left = resources_start
+	collect_amount = 1
 
-func _on_mining_body_exited(body):
-	if body is Gnome:
-		gnome_in_area = false
+func harvest():
+	if resources_left - collect_amount <= 0:
+		$RespawnTimer.start(respawn_time)
+		visible(false)
+		var return_amount = resources_left
+		resources_left = 0
+		return return_amount
+	resources_left -= collect_amount
+	return collect_amount
+	
+func visible(toggle: bool):
+	$ResourceArea.monitorable = toggle
+	$ResourceArea.monitoring = toggle
+	$MushroomSprite.visible = toggle
+	
+
+func outline(toggle: bool):
+	$MushroomSprite.material.set_shader_parameter("width", toggle)
+
+
+func _on_respawn_timer_timeout() -> void:
+	resources_left = resources_start
+	visible(true)

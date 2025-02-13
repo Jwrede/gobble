@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var random_spawn_offset: int = 10
-@export var n_spawn_gnomes: int = 3
+@export var n_spawn_gnomes: int = 1
 @export var gnome_scene : PackedScene = preload("res://Scenes/gnome.tscn")
 @export var gnome_spawn_parent_node : Node
 @export var spawn_point : Node

@@ -1,4 +1,4 @@
-class_name Insect extends CharacterBody2D
+class_name Spider extends Insect
 
 var tamed = false
 @export var speed = 20
@@ -30,6 +30,9 @@ func _change_direction():
 	var direction = Vector2(cos(random_angle), sin(random_angle))
 	end_position = position + direction * random_dist
 
+func outline(toggle: bool):
+	$AnimatedSprite2D.material.set_shader_parameter("width", toggle)
+	
 func _physics_process(delta):
 	$AnimatedSprite2D.play("run")
 	if not tamed:

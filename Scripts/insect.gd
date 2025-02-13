@@ -1,0 +1,1 @@
+class_name Insect extends CharacterBody2D
