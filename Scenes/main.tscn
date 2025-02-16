@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=4 uid="uid://be2dbad8sfwit"]
 
-[ext_resource type="Script" path="res://Scenes/setup.gd" id="1_8gkxv"]
+[ext_resource type="Script" path="res://Scripts/setup.gd" id="1_8gkxv"]
 [ext_resource type="Texture2D" uid="uid://cp8ffan6csmbm" path="res://Assets/Tileset.png" id="1_57oqx"]
 [ext_resource type="PackedScene" uid="uid://dw1lq1ybnrjtn" path="res://Scenes/mushroom.tscn" id="2_gfohl"]
 [ext_resource type="Shader" path="res://Shader/outline.gdshader" id="4_cijfq"]
@@ -180,38 +180,42 @@ agent_radius = 0.01
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m7sbp"]
 resource_local_to_scene = true
 shader = ExtResource("4_cijfq")
-shader_parameter/hitflash_active = false
+shader_parameter/use_outline_shader = true
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null
+shader_parameter/hitflash = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lscgb"]
 resource_local_to_scene = true
 shader = ExtResource("4_cijfq")
-shader_parameter/hitflash_active = false
+shader_parameter/use_outline_shader = true
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null
+shader_parameter/hitflash = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8j15"]
 resource_local_to_scene = true
 shader = ExtResource("4_cijfq")
-shader_parameter/hitflash_active = false
+shader_parameter/use_outline_shader = true
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null
+shader_parameter/hitflash = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqd1m"]
 resource_local_to_scene = true
 shader = ExtResource("4_cijfq")
-shader_parameter/hitflash_active = false
+shader_parameter/use_outline_shader = true
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null
+shader_parameter/hitflash = false
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("gnome_spawn_parent_node", "spawn_point")]
 script = ExtResource("1_8gkxv")

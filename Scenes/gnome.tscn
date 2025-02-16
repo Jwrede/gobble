@@ -14,11 +14,12 @@ height = 8.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qaynp"]
 resource_local_to_scene = true
 shader = ExtResource("3_0y3d2")
-shader_parameter/hitflash_active = false
+shader_parameter/use_outline_shader = true
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null
+shader_parameter/hitflash = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boang"]
 atlas = ExtResource("4_3822h")

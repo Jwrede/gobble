@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmt7h2vfpi6tx"]
+[gd_scene load_steps=31 format=3 uid="uid://cmt7h2vfpi6tx"]
 
 [ext_resource type="Script" path="res://Scripts/spider.gd" id="1_byyrv"]
 [ext_resource type="Texture2D" uid="uid://yhfag0ihx500" path="res://Assets/Spider Sprite Sheet.png" id="2_de1lh"]
@@ -7,10 +7,48 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u8kwh"]
 resource_local_to_scene = true
 shader = ExtResource("2_eosjw")
+shader_parameter/use_outline_shader = true
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null
+shader_parameter/hitflash = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suwh6"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(8, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqxkf"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(40, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi5ws"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(72, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsx6l"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(104, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a710g"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(136, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5i70"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(168, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faq2t"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(200, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg518"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(232, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37774"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(264, 208, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rj3ul"]
 atlas = ExtResource("2_de1lh")
@@ -70,6 +108,38 @@ region = Rect2(264, 80, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dytxy"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suwh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqxkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi5ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsx6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a710g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5i70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faq2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg518")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37774")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rj3ul")
@@ -138,8 +208,9 @@ script = ExtResource("1_byyrv")
 material = SubResource("ShaderMaterial_u8kwh")
 position = Vector2(1, -9)
 sprite_frames = SubResource("SpriteFrames_dytxy")
-animation = &"idle"
-frame_progress = 0.541727
+animation = &"death"
+frame = 8
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -153,3 +224,7 @@ scale = Vector2(0.693548, 0.621212)
 visible = false
 position = Vector2(-8.59416e-08, -8.04878)
 shape = SubResource("CircleShape2D_hsohs")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

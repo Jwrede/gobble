@@ -7,11 +7,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yanq5"]
 resource_local_to_scene = true
 shader = ExtResource("2_h107j")
-shader_parameter/hitflash_active = false
+shader_parameter/use_outline_shader = true
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null
+shader_parameter/hitflash = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4oblo"]
 radius = 5.0

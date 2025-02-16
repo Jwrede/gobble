@@ -135,7 +135,7 @@ func _change_waypoint(target):
 func _physics_process(_delta: float) -> void:
 	if is_harvesting:
 		_check_if_resource_empty()
-	if is_attacking:
+	if is_attacking and enemy_to_attack.health != 0:
 		_change_waypoint(enemy_to_attack.global_position)
 		if not attack_started and \
 			global_position.distance_to(enemy_to_attack.global_position) < 10:
@@ -188,7 +188,7 @@ func _move():
 func _attack():
 	sprite_node.play("attack")
 	if sprite_node.frame == 4 and not enemy_damaged:
-		enemy_to_attack.damage(global_position)
+		enemy_to_attack.damage(10, global_position)
 		enemy_damaged = true
 
 func _on_tame_range_body_entered(body: Node2D) -> void:

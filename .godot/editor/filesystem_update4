@@ -1,9 +1,9 @@
-res://Scenes/gnome.tscn
+res://Scenes/spider.tscn
 res://Shader/outline.gdshader
 res://Shader/selection.gdshader
+res://Shader/hitflash.gdshader
+res://Scenes/gnome.tscn
+res://Scripts/spider.gd
 res://Scenes/mushroom.tscn
-res://Scenes/spider.tscn
 res://Scenes/main.tscn
 res://Scripts/Gnome/gnome.gd
-res://Scripts/spider.gd
-res://Shader/hitflash.gdshader
