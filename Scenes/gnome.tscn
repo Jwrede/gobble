@@ -14,6 +14,7 @@ height = 8.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qaynp"]
 resource_local_to_scene = true
 shader = ExtResource("3_0y3d2")
+shader_parameter/hitflash_active = false
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null

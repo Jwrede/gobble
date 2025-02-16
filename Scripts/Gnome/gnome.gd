@@ -34,6 +34,7 @@ var enemy_to_attack : Insect = null:
 var is_harvesting = false
 var is_attacking = false
 var attack_started = false
+var enemy_damaged = false
 
 @onready var sprite_node : AnimatedSprite2D = $AnimatedSprite2D
 @onready var tame_timout_node : Timer = $TameTimeout
@@ -139,22 +140,17 @@ func _physics_process(_delta: float) -> void:
 		if not attack_started and \
 			global_position.distance_to(enemy_to_attack.global_position) < 10:
 			attack_started = true
-			$AttackTimeout.start(1)
+			enemy_damaged = false
+			$AttackTimeout.start(0.5)
+			
 	if is_attacking and attack_started:
-		sprite_node.play("attack")
+		_attack()
 	elif is_harvesting and \
 		resource_to_harvest != null and \
 		global_position.distance_to(resource_to_harvest.global_position) < 20:
 		_harvest()
 	elif not navigation_agent_node.is_navigation_finished():
-		var direction = global_position.direction_to(
-			navigation_agent_node.get_next_path_position()
-		).normalized()
-		
-		velocity = direction * SPEED
-		facing = direction.x < 0
-		sprite_node.play("run")
-		move_and_slide()
+		_move()
 	else:
 		velocity = Vector2(0,0)
 		sprite_node.play("idle")
@@ -162,12 +158,12 @@ func _physics_process(_delta: float) -> void:
 
 func _check_if_resource_empty():
 	if resource_to_harvest == null or resource_to_harvest.resources_left <= 0:
-		var harvestable_resources = resource_in_range.filter(func(r): return r.resources_left)
+		var harvestable_resources = resource_in_range.filter(
+			func(r): 
+				return r.resources_left > 0 and r != resource_to_harvest
+		)
 		if len(harvestable_resources) > 0:
-			for r in harvestable_resources:
-				if r != resource_to_harvest:
-					resource_to_harvest = r
-					break
+			resource_to_harvest = harvestable_resources[0]
 			_change_waypoint(resource_to_harvest.global_position)
 		else:
 			resource_to_harvest = null
@@ -179,22 +175,25 @@ func _harvest():
 		harvest_timeout_ready = false
 		harvest_timout_node.start(1)
 
-func _on_tame_timeout_timeout() -> void:
-	for i in tamed_insects:
-		if i.cost <= mycelium:
-			mycelium -= i.cost
-		else:
-			i.remove_tame()
-			tamed_insects.erase(i)
-
-
-func _on_harvest_timeout_timeout() -> void:
-	harvest_timeout_ready = true
+func _move():
+	var direction = global_position.direction_to(
+		navigation_agent_node.get_next_path_position()
+	).normalized()
+	
+	velocity = direction * SPEED
+	facing = direction.x < 0
+	sprite_node.play("run")
+	move_and_slide()
+	
+func _attack():
+	sprite_node.play("attack")
+	if sprite_node.frame == 4 and not enemy_damaged:
+		enemy_to_attack.damage(global_position)
+		enemy_damaged = true
 
 func _on_tame_range_body_entered(body: Node2D) -> void:
 	if body is Insect:
 		insects_in_range.append(body)
-
 
 func _on_tame_range_body_exited(body: Node2D) -> void:
 	if body is Insect:
@@ -210,6 +209,16 @@ func _on_resource_range_area_exited(area: Area2D) -> void:
 	if area.get_parent() is HarvestableResource:
 		resource_in_range.erase(area.get_parent())
 
+func _on_tame_timeout_timeout() -> void:
+	for i in tamed_insects:
+		if i.cost <= mycelium:
+			mycelium -= i.cost
+		else:
+			i.remove_tame()
+			tamed_insects.erase(i)
+
+func _on_harvest_timeout_timeout() -> void:
+	harvest_timeout_ready = true
 
 func _on_attack_timeout_timeout() -> void:
 	attack_started = false

@@ -6,6 +6,11 @@ var tamed = false
 @export var min_distance = 5
 @export var max_distance = 25
 @export var cost = 1
+var knockback_vector: Vector2 = Vector2.ZERO
+var knockback_strength: float = 300  # Adjust for stronger knockback
+var friction: float = 0.9  # Controls how fast the knockback fades
+var hitflash_frames = 10
+var hitflash_frame_counter = 0
 
 var gnomes_in_range : Array[Gnome] = []
 var taming_gnome : Gnome = null
@@ -19,6 +24,8 @@ var facing = true:
 		if value != facing:
 			facing = value
 			$AnimatedSprite2D.flip_h = facing
+
+
 
 func _ready():
 	randomize()
@@ -48,9 +55,22 @@ func _physics_process(delta):
 			velocity = (gnome_position - global_position).normalized() * (speed*2)
 		else:
 			velocity = Vector2.ZERO
+
+	velocity += knockback_vector
+	knockback_vector *= friction  # Reduce knockback over time
 	
 	facing = velocity.x > 0
 	move_and_slide()
+	
+	if hitflash_frame_counter > 0:
+		hitflash_frame_counter -= 1
+		if hitflash_frame_counter == 0:
+			$AnimatedSprite2D.material.set_shader_parameter("hitflash_active", false)
+
+func damage(from_position):
+	knockback_vector = (global_position - from_position).normalized() * knockback_strength
+	$AnimatedSprite2D.material.set_shader_parameter("hitflash_active", true)
+	hitflash_frame_counter = hitflash_frames
 
 func tame(gnome):
 	collision_mask = disable_bit(collision_mask, 7)

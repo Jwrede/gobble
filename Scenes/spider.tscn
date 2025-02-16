@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u8kwh"]
 resource_local_to_scene = true
 shader = ExtResource("2_eosjw")
-shader_parameter/width = null
+shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null

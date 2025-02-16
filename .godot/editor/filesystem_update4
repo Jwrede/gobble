@@ -3,6 +3,7 @@ res://Shader/outline.gdshader
 res://Shader/selection.gdshader
 res://Scenes/mushroom.tscn
 res://Scenes/spider.tscn
-res://Scripts/Gnome/gnome.gd
-res://Scenes/setup.gd
 res://Scenes/main.tscn
+res://Scripts/Gnome/gnome.gd
+res://Scripts/spider.gd
+res://Shader/hitflash.gdshader

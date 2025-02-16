@@ -180,6 +180,7 @@ agent_radius = 0.01
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m7sbp"]
 resource_local_to_scene = true
 shader = ExtResource("4_cijfq")
+shader_parameter/hitflash_active = false
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
@@ -188,6 +189,7 @@ shader_parameter/minimal_flickering_alpha = null
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lscgb"]
 resource_local_to_scene = true
 shader = ExtResource("4_cijfq")
+shader_parameter/hitflash_active = false
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
@@ -196,6 +198,7 @@ shader_parameter/minimal_flickering_alpha = null
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8j15"]
 resource_local_to_scene = true
 shader = ExtResource("4_cijfq")
+shader_parameter/hitflash_active = false
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
@@ -204,6 +207,7 @@ shader_parameter/minimal_flickering_alpha = null
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqd1m"]
 resource_local_to_scene = true
 shader = ExtResource("4_cijfq")
+shader_parameter/hitflash_active = false
 shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = null
