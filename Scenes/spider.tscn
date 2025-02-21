@@ -1,8 +1,12 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmt7h2vfpi6tx"]
+[gd_scene load_steps=39 format=3 uid="uid://cmt7h2vfpi6tx"]
 
 [ext_resource type="Script" path="res://Scripts/spider.gd" id="1_byyrv"]
 [ext_resource type="Texture2D" uid="uid://yhfag0ihx500" path="res://Assets/Spider Sprite Sheet.png" id="2_de1lh"]
 [ext_resource type="Shader" path="res://Shader/outline.gdshader" id="2_eosjw"]
+[ext_resource type="Script" path="res://Scripts/movement.gd" id="4_2spp3"]
+[ext_resource type="Script" path="res://Scripts/damageable.gd" id="5_w7kxa"]
+[ext_resource type="Script" path="res://Scripts/knockback.gd" id="6_adn30"]
+[ext_resource type="Script" path="res://Scripts/attack.gd" id="7_48eug"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u8kwh"]
 resource_local_to_scene = true
@@ -13,6 +17,18 @@ shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/flickering_speed = null
 shader_parameter/minimal_flickering_alpha = null
 shader_parameter/hitflash = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlg1o"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(8, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86b3a"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(40, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6osmh"]
+atlas = ExtResource("2_de1lh")
+region = Rect2(72, 176, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_suwh6"]
 atlas = ExtResource("2_de1lh")
@@ -110,6 +126,20 @@ region = Rect2(264, 80, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vlg1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86b3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6osmh")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_suwh6")
 }, {
 "duration": 1.0,
@@ -200,31 +230,77 @@ height = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_hsohs"]
 radius = 42.0919
 
-[node name="Spider" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mwk6k"]
+radius = 27.074
+
+[node name="Spider" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent", "movement_component", "damageable_component", "attack_component", "knockback_component", "attack_timeout_timer", "sprite_node")]
 collision_mask = 129
 script = ExtResource("1_byyrv")
+navigation_agent = NodePath("NavigationAgent2D")
+movement_component = NodePath("Movement")
+damageable_component = NodePath("Damageable")
+attack_component = NodePath("Attack")
+knockback_component = NodePath("Knockback")
+attack_timeout_timer = NodePath("AttackTimeout")
+sprite_node = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_u8kwh")
 position = Vector2(1, -9)
 sprite_frames = SubResource("SpriteFrames_dytxy")
-animation = &"death"
-frame = 8
-frame_progress = 1.0
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_fkrk1")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AttackRange" type="Area2D" parent="."]
 position = Vector2(5.96046e-08, 0)
 scale = Vector2(0.693548, 0.621212)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(-8.59416e-08, -8.04878)
 shape = SubResource("CircleShape2D_hsohs")
 
+[node name="EnemySenseRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySenseRange"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_mwk6k")
+
 [node name="DespawnTimer" type="Timer" parent="."]
 
+[node name="AttackTimeout" type="Timer" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 1.0
+target_desired_distance = 2.0
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("entity", "sprite", "navigation_agent")]
+script = ExtResource("4_2spp3")
+entity = NodePath("..")
+speed = 20.0
+sprite = NodePath("../AnimatedSprite2D")
+navigation_agent = NodePath("../NavigationAgent2D")
+flipped_sprite = true
+
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("despawn_timer", "entity", "sprite")]
+script = ExtResource("5_w7kxa")
+despawn_timer = NodePath("../DespawnTimer")
+entity = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="Knockback" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("6_adn30")
+entity = NodePath("..")
+
+[node name="Attack" type="Node" parent="." node_paths=PackedStringArray("enemy_sense_range", "entity", "attack_timeout_timer")]
+script = ExtResource("7_48eug")
+damage_frame = 2
+enemy_sense_range = NodePath("../EnemySenseRange")
+entity = NodePath("..")
+attack_timeout_timer = NodePath("../AttackTimeout")
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

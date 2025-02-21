@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kchug"]
-size = Vector2(13, 8.5)
+size = Vector2(6, 3.5)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_axop4"]
 a = Vector2(50, 0)
@@ -57,7 +57,7 @@ autoplay = "default"
 frame_progress = 0.846215
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.5, -4.25)
+position = Vector2(1, -4)
 shape = SubResource("RectangleShape2D_kchug")
 
 [node name="Timer" type="Timer" parent="."]

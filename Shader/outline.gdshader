@@ -10,13 +10,13 @@ uniform bool hitflash = false;
 void fragment() {
     vec4 previous_color = texture(TEXTURE, UV);
     vec4 final_color = previous_color; // default result
-    
+
     if (use_outline_shader) {
         float pixel_size_x = 1.0 / float(textureSize(TEXTURE, 0).x);
         float pixel_size_y = 1.0 / float(textureSize(TEXTURE, 0).y);
         vec2 pixel_size = vec2(pixel_size_x, pixel_size_y);
         bool foundOutline = false;
-        
+
         // Only check for outline if the current pixel is transparent.
         if (previous_color.a == 0.0) {
             for (int x = -width; x <= width; x++) {
@@ -44,6 +44,6 @@ void fragment() {
             final_color = white_color;
         }
     }
-    
+
     COLOR = final_color;
 }

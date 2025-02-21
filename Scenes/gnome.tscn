@@ -1,11 +1,18 @@
-[gd_scene load_steps=34 format=3 uid="uid://b3aaw5pmo811g"]
+[gd_scene load_steps=47 format=3 uid="uid://b3aaw5pmo811g"]
 
 [ext_resource type="Script" path="res://Scripts/Gnome/gnome_parent.gd" id="1_ge1v0"]
 [ext_resource type="Script" path="res://Scripts/Gnome/gnome.gd" id="2_34ve6"]
 [ext_resource type="Shader" path="res://Shader/outline.gdshader" id="3_0y3d2"]
 [ext_resource type="Texture2D" uid="uid://cst2uw6w05and" path="res://godot.png" id="4_1s35n"]
 [ext_resource type="Texture2D" uid="uid://bk38lkktvh7kl" path="res://Assets/Korred Sprite Sheet.png" id="4_3822h"]
+[ext_resource type="Script" path="res://Scripts/movement.gd" id="5_wjw4q"]
 [ext_resource type="Shader" path="res://Shader/selection.gdshader" id="5_wkn5y"]
+[ext_resource type="Script" path="res://Scripts/harvest.gd" id="7_3vsw0"]
+[ext_resource type="Script" path="res://Scripts/attack.gd" id="8_7rb07"]
+[ext_resource type="Script" path="res://Scripts/taming.gd" id="9_myw72"]
+[ext_resource type="Script" path="res://Scripts/selection.gd" id="10_lvm0h"]
+[ext_resource type="Script" path="res://Scripts/damageable.gd" id="10_o24nf"]
+[ext_resource type="Script" path="res://Scripts/knockback.gd" id="11_2unf2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ed6mq"]
 radius = 3.0
@@ -40,6 +47,26 @@ region = Rect2(96, 68, 32, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhgam"]
 atlas = ExtResource("4_3822h")
 region = Rect2(128, 68, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd50j"]
+atlas = ExtResource("4_3822h")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vew7p"]
+atlas = ExtResource("4_3822h")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh4uv"]
+atlas = ExtResource("4_3822h")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g5pn"]
+atlas = ExtResource("4_3822h")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hux6h"]
+atlas = ExtResource("4_3822h")
+region = Rect2(128, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w8wnm"]
 atlas = ExtResource("4_3822h")
@@ -125,6 +152,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vd50j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vew7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rh4uv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7g5pn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hux6h")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w8wnm")
 }, {
 "duration": 1.0,
@@ -192,6 +239,9 @@ radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4n05"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_17sr6"]
+radius = 27.074
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vk3wf"]
 shader = ExtResource("5_wkn5y")
 shader_parameter/ring_radius = 0.44
@@ -204,13 +254,20 @@ shader_parameter/lerp_color = Color(1, 1, 1, 1)
 [node name="Character" type="Node2D"]
 script = ExtResource("1_ge1v0")
 
-[node name="Gnome" type="CharacterBody2D" parent="."]
+[node name="Gnome" type="CharacterBody2D" parent="." node_paths=PackedStringArray("movement_component", "harvest_component", "attack_component", "taming_component", "selection_component", "damageable_component", "knockback_component")]
 use_parent_material = true
 position = Vector2(0, -8)
 collision_layer = 3
 collision_mask = 3
 input_pickable = true
 script = ExtResource("2_34ve6")
+movement_component = NodePath("Movement")
+harvest_component = NodePath("Harvest")
+attack_component = NodePath("Attack")
+taming_component = NodePath("Taming")
+selection_component = NodePath("Selection")
+damageable_component = NodePath("Damageable")
+knockback_component = NodePath("Knockback")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gnome"]
 position = Vector2(0, -6)
@@ -225,7 +282,7 @@ material = SubResource("ShaderMaterial_qaynp")
 position = Vector2(-3, -8)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_27cli")
-animation = &"attack"
+animation = &"death"
 autoplay = "idle"
 centered = false
 offset = Vector2(-8, -16)
@@ -236,12 +293,6 @@ offset = Vector2(-8, -16)
 visible = false
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_fdgbw")
-
-[node name="TameTimeout" type="Timer" parent="Gnome"]
-
-[node name="HarvestTimeout" type="Timer" parent="Gnome"]
-
-[node name="AttackTimeout" type="Timer" parent="Gnome"]
 
 [node name="ResourceRange" type="Area2D" parent="Gnome"]
 visible = false
@@ -257,6 +308,59 @@ shape = SubResource("CircleShape2D_ryvby")
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_g4n05")
 
+[node name="EnemySenseRange" type="Area2D" parent="Gnome"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gnome/EnemySenseRange"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_17sr6")
+
+[node name="AttackTimeout" type="Timer" parent="Gnome"]
+
+[node name="TameTimeout" type="Timer" parent="Gnome"]
+
+[node name="HarvestTimeout" type="Timer" parent="Gnome"]
+
+[node name="DespawnTimer" type="Timer" parent="Gnome"]
+
+[node name="Movement" type="Node2D" parent="Gnome" node_paths=PackedStringArray("entity", "sprite", "navigation_agent")]
+script = ExtResource("5_wjw4q")
+entity = NodePath("..")
+speed = 20.0
+sprite = NodePath("../AnimatedSprite2D")
+navigation_agent = NodePath("../NavigationAgent2D")
+
+[node name="Attack" type="Node" parent="Gnome" node_paths=PackedStringArray("enemy_sense_range", "entity", "attack_timeout_timer")]
+script = ExtResource("8_7rb07")
+damage_frame = 4
+enemy_sense_range = NodePath("../EnemySenseRange")
+entity = NodePath("..")
+attack_timeout_timer = NodePath("../AttackTimeout")
+
+[node name="Taming" type="Node" parent="Gnome" node_paths=PackedStringArray("gnome", "tame_timer")]
+script = ExtResource("9_myw72")
+gnome = NodePath("..")
+tame_timer = NodePath("../TameTimeout")
+
+[node name="Selection" type="Node" parent="Gnome" node_paths=PackedStringArray("gnome", "sprite")]
+script = ExtResource("10_lvm0h")
+gnome = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="Damageable" type="Node" parent="Gnome" node_paths=PackedStringArray("despawn_timer", "entity", "sprite")]
+script = ExtResource("10_o24nf")
+despawn_timer = NodePath("../DespawnTimer")
+entity = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="Knockback" type="Node" parent="Gnome" node_paths=PackedStringArray("entity")]
+script = ExtResource("11_2unf2")
+entity = NodePath("..")
+
+[node name="Harvest" type="Node" parent="Gnome" node_paths=PackedStringArray("gnome", "harvest_timer")]
+script = ExtResource("7_3vsw0")
+gnome = NodePath("..")
+harvest_timer = NodePath("../HarvestTimeout")
+
 [node name="Waypoint" type="Sprite2D" parent="."]
 visible = false
 z_index = -1
@@ -265,12 +369,11 @@ position = Vector2(0, -10)
 scale = Vector2(0.226118, 0.0781745)
 texture = ExtResource("4_1s35n")
 
-[connection signal="selected_toggle" from="Gnome" to="." method="_on_player_body_selected_toggle"]
 [connection signal="waypoint_changed" from="Gnome" to="." method="_on_player_body_waypoint_changed"]
-[connection signal="body_entered" from="Gnome/TameRange" to="Gnome" method="_on_tame_range_body_entered"]
-[connection signal="body_exited" from="Gnome/TameRange" to="Gnome" method="_on_tame_range_body_exited"]
-[connection signal="timeout" from="Gnome/TameTimeout" to="Gnome" method="_on_tame_timeout_timeout"]
-[connection signal="timeout" from="Gnome/HarvestTimeout" to="Gnome" method="_on_harvest_timeout_timeout"]
-[connection signal="timeout" from="Gnome/AttackTimeout" to="Gnome" method="_on_attack_timeout_timeout"]
-[connection signal="area_entered" from="Gnome/ResourceRange" to="Gnome" method="_on_resource_range_area_entered"]
-[connection signal="area_exited" from="Gnome/ResourceRange" to="Gnome" method="_on_resource_range_area_exited"]
+[connection signal="body_entered" from="Gnome/TameRange" to="Gnome/Taming" method="_on_tame_range_body_entered"]
+[connection signal="body_exited" from="Gnome/TameRange" to="Gnome/Taming" method="_on_tame_range_body_exited"]
+[connection signal="area_entered" from="Gnome/ResourceRange" to="Gnome/Harvest" method="_on_resource_range_area_entered"]
+[connection signal="area_exited" from="Gnome/ResourceRange" to="Gnome/Harvest" method="_on_resource_range_area_exited"]
+[connection signal="timeout" from="Gnome/HarvestTimeout" to="Gnome/Harvest" method="_on_harvest_timeout_timeout"]
+[connection signal="selected_toggle" from="Gnome/Selection" to="." method="_on_selection_selected_toggle"]
+[connection signal="died" from="Gnome/Damageable" to="Gnome" method="_on_damageable_died"]

@@ -1,11 +1,9 @@
-class_name Mushroom extends HarvestableResource
+class_name HarvestableResource extends Node2D
 
 var respawn_time = 15
-
-func _init():
-	resources_start = 3
-	resources_left = resources_start
-	collect_amount = 1
+var resources_start = 3
+var resources_left = resources_start
+var collect_amount = 1
 
 func harvest():
 	if resources_left - collect_amount <= 0:

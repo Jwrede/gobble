@@ -1,88 +1,67 @@
-class_name Spider extends Insect
+extends Insect
+class_name Spider
+
+@export var min_distance:int = 5
+@export var max_distance:int = 25
+@export var cost:int = 1
 
 var tamed = false
-@export var speed = 20
-@export var limit = 5.0
-@export var min_distance = 5
-@export var max_distance = 25
-@export var cost = 1
-@export var health = 30
-var knockback_vector: Vector2 = Vector2.ZERO
-var knockback_strength: float = 50  # Adjust for stronger knockback
-var friction: float = 0.9  # Controls how fast the knockback fades
+var taming_gnome: Gnome = null
+
 var hitflash_frames = 10
-var hitflash_frame_counter = 0
 var is_dead = false
+var is_attacking = false
 
-var gnomes_in_range : Array[Gnome] = []
-var taming_gnome : Gnome = null
+# References to components.
+@export var navigation_agent: NavigationAgent2D
+@export var movement_component: Movement
+@export var damageable_component: Damageable
+@export var attack_component: Attack
+@export var knockback_component: Knockback
 
-var end_position = Vector2.ZERO
-var facing = true:
-	get:
-		return facing
-	set(value):
-		if value != facing:
-			facing = value
-			$AnimatedSprite2D.flip_h = facing
-
+@export var attack_timeout_timer: Timer
+@export var sprite_node: AnimatedSprite2D
 
 func _ready():
 	randomize()
-	_change_direction()
+	_change_wander_target()
 
-func _change_direction():
+func _change_wander_target():
 	var random_angle = randf() * TAU
 	var random_dist = randf_range(min_distance, max_distance)
 	var direction = Vector2(cos(random_angle), sin(random_angle))
-	end_position = position + direction * random_dist
+	var target = global_position + direction * random_dist
+	navigation_agent.target_position = target
 
-func outline(toggle: bool):
-	$AnimatedSprite2D.material.set_shader_parameter("width", toggle)
-	
+# Called every frame.
 func _physics_process(delta):
 	if is_dead:
 		return
-	$AnimatedSprite2D.play("run")
+	if is_attacking:
+		attack_component.switch_enemy_if_dead()
+	
 	if not tamed:
-		var move_direction = end_position - position
-		if move_direction.length() < limit:
-			_change_direction()
-			move_direction = end_position - position
-		velocity = move_direction.normalized() * speed
-	else:
-		var gnome_position = taming_gnome.get_child(1).target_position
-		var distance_to_gnome = global_position.distance_to(gnome_position)
-		if distance_to_gnome > 1:
-			velocity = (gnome_position - global_position).normalized() * (speed*2)
+		if is_attacking:
+			if global_position.distance_to(attack_component.enemy.global_position) > 20:
+				navigation_agent.target_position = attack_component.enemy.global_position
+				movement_component.move()
+			else:
+				if not attack_component.attack_started:
+					attack_component.start_attack()
+				else:
+					attack_component.update_attack()
+		elif navigation_agent.is_navigation_finished():
+			_change_wander_target()
 		else:
-			velocity = Vector2.ZERO
-
-	velocity += knockback_vector
-	knockback_vector *= friction  # Reduce knockback over time
-	
-	facing = velocity.x > 0
-	move_and_slide()
-	
-	if hitflash_frame_counter > 0:
-		hitflash_frame_counter -= 1
-		if hitflash_frame_counter == 0:
-			$AnimatedSprite2D.material.set_shader_parameter("hitflash", false)
-			$AnimatedSprite2D.material.set_shader_parameter("use_outline_shader", true)
-			if health == 0:
-				_death()
-
-func damage(damage, from_position):
-	health = max(health-damage, 0)
-	knockback_vector = (global_position - from_position).normalized() * knockback_strength
-	$AnimatedSprite2D.material.set_shader_parameter("hitflash", true)
-	$AnimatedSprite2D.material.set_shader_parameter("use_outline_shader", false)
-	hitflash_frame_counter = hitflash_frames
-
-func _death():
-	$AnimatedSprite2D.play("death")
-	$DespawnTimer.start(10)
-	is_dead = true
+			movement_component.move()
+	else:
+		# If tamed, follow the gnome.
+		var gnome_target = taming_gnome.get_child(1).target_position
+		navigation_agent.target_position = gnome_target
+		movement_component.move()
+		
+	knockback_component.update_knockback()
+	damageable_component.update(delta)
 
 func tame(gnome):
 	collision_mask = disable_bit(collision_mask, 7)
@@ -97,5 +76,13 @@ func disable_bit(mask: int, index: int) -> int:
 	return mask & ~(1 << index)
 
 
-func _on_despawn_timer_timeout() -> void:
-	queue_free()
+func _on_attack_range_body_entered(body: Node2D) -> void:
+	if body is Gnome and body.has_node("Damageable"):
+		attack_component.set_enemy(body)
+		is_attacking = true
+
+
+func _on_attack_range_body_exited(body: Node2D) -> void:
+	if body is Gnome and body.has_node("Damageable"):
+		attack_component.set_enemy(null)
+		is_attacking = false
