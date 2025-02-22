@@ -1,6 +1,8 @@
 extends Node
 class_name Movement
 
+signal waypoint_changed
+
 @export var entity: Node2D
 @export var speed: float = 50.0
 
@@ -8,10 +10,20 @@ class_name Movement
 @export var navigation_agent: NavigationAgent2D
 @export var flipped_sprite: bool = false
 
+var target = Vector2.ZERO:
+	get():
+		return navigation_agent.target_position
+	set(value):
+		navigation_agent.target_position = value
+
 var facing = true:
 	set(value):
 		facing = not value if flipped_sprite else value
 		sprite.flip_h = facing
+
+func set_target(_target):
+	target = _target
+	emit_signal("waypoint_changed", _target)
 
 func move():
 	var base_velocity: Vector2 = Vector2.ZERO

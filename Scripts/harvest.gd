@@ -6,8 +6,10 @@ var timeout_ready: bool = true
 var resource_in_range: Array[HarvestableResource] = []
 var mycelium: int = 0
 
+@export var harvest_range: int = 20
 @export var gnome: Node
 @export var harvest_timer: Timer
+@export var movement_component: Movement
 
 func set_resource(resource: HarvestableResource) -> void:
 	# Remove outline from previous resource.
@@ -26,6 +28,13 @@ func harvest():
 		timeout_ready = false
 		harvest_timer.start(1)
 
+func update():
+	switch_resource_if_empty()
+	if current_resource and gnome.global_position.distance_to(current_resource.global_position) < harvest_range:
+		harvest()
+	else:
+		movement_component.move()
+
 func switch_resource_if_empty():
 	if current_resource == null or current_resource.resources_left <= 0:
 		var harvestable_resources = []
@@ -34,7 +43,7 @@ func switch_resource_if_empty():
 				harvestable_resources.append(r)
 		if harvestable_resources.size() > 0:
 			set_resource(harvestable_resources[0])
-			gnome._change_waypoint(current_resource.global_position)
+			movement_component.set_target(current_resource.global_position)
 		else:
 			set_resource(null)
 

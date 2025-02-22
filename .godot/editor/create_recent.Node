@@ -1,8 +1,8 @@
+Node
 CollisionShape2D
 Area2D
 Attack
 Knockback
-Node
 Timer
 Movement
 Node2D

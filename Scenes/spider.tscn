@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/damageable.gd" id="5_w7kxa"]
 [ext_resource type="Script" path="res://Scripts/knockback.gd" id="6_adn30"]
 [ext_resource type="Script" path="res://Scripts/attack.gd" id="7_48eug"]
+[ext_resource type="Script" path="res://Scripts/tameable.gd" id="8_pxa6g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u8kwh"]
 resource_local_to_scene = true
@@ -227,13 +228,10 @@ animations = [{
 radius = 6.0
 height = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hsohs"]
-radius = 42.0919
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwk6k"]
 radius = 27.074
 
-[node name="Spider" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent", "movement_component", "damageable_component", "attack_component", "knockback_component", "attack_timeout_timer", "sprite_node")]
+[node name="Spider" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent", "movement_component", "damageable_component", "attack_component", "knockback_component", "tameable_component", "attack_timeout_timer", "sprite_node")]
 collision_mask = 129
 script = ExtResource("1_byyrv")
 navigation_agent = NodePath("NavigationAgent2D")
@@ -241,6 +239,7 @@ movement_component = NodePath("Movement")
 damageable_component = NodePath("Damageable")
 attack_component = NodePath("Attack")
 knockback_component = NodePath("Knockback")
+tameable_component = NodePath("Tameable")
 attack_timeout_timer = NodePath("AttackTimeout")
 sprite_node = NodePath("AnimatedSprite2D")
 
@@ -253,14 +252,6 @@ animation = &"attack"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_fkrk1")
-
-[node name="AttackRange" type="Area2D" parent="."]
-position = Vector2(5.96046e-08, 0)
-scale = Vector2(0.693548, 0.621212)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(-8.59416e-08, -8.04878)
-shape = SubResource("CircleShape2D_hsohs")
 
 [node name="EnemySenseRange" type="Area2D" parent="."]
 
@@ -294,13 +285,16 @@ sprite = NodePath("../AnimatedSprite2D")
 script = ExtResource("6_adn30")
 entity = NodePath("..")
 
-[node name="Attack" type="Node" parent="." node_paths=PackedStringArray("enemy_sense_range", "entity", "attack_timeout_timer")]
+[node name="Attack" type="Node" parent="." node_paths=PackedStringArray("enemy_sense_range", "entity", "attack_timeout_timer", "movement_component")]
 script = ExtResource("7_48eug")
 damage_frame = 2
 enemy_sense_range = NodePath("../EnemySenseRange")
 entity = NodePath("..")
 attack_timeout_timer = NodePath("../AttackTimeout")
+movement_component = NodePath("../Movement")
 
-[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
-[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[node name="Tameable" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("8_pxa6g")
+entity = NodePath("..")
+
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

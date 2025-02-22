@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name Gnome
 
-signal waypoint_changed
 var random_waypoint_offset = 0
 
 
@@ -9,6 +8,7 @@ var random_waypoint_offset = 0
 var is_harvesting = false
 var is_attacking = false
 var is_dead = false
+var team: int
 
 @onready var sprite_node: AnimatedSprite2D = $AnimatedSprite2D
 @onready var tame_timout_node: Timer = $TameTimeout
@@ -45,7 +45,7 @@ func _input(event):
 			randf_range(-random_waypoint_offset, random_waypoint_offset),
 			randf_range(-random_waypoint_offset, random_waypoint_offset)
 		)
-		_change_waypoint(target)
+		movement_component.set_target(target)
 		var results = _get_clicked_objects()
 		_handle_resource_clicked(results)
 		_handle_enemy_clicked(results)
@@ -73,7 +73,7 @@ func _handle_resource_clicked(results):
 		is_harvesting = true
 			
 func _handle_enemy_clicked(results):
-	results = results.filter(func(n): return n is Insect)
+	results = results.filter(func(n): return n is Insect and n.team != team)
 	if results.size() == 0:
 		is_attacking = false
 		attack_component.set_enemy(null)
@@ -81,25 +81,13 @@ func _handle_enemy_clicked(results):
 		attack_component.set_enemy(results[0])
 		is_attacking = true
 
-func _change_waypoint(target):
-	navigation_agent_node.target_position = target
-	emit_signal("waypoint_changed", target)
-
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
-	if is_harvesting:
-		harvest_component.switch_resource_if_empty()
 	if is_attacking:
-		attack_component.switch_enemy_if_dead()
-	if is_attacking and attack_component.enemy:
-		_change_waypoint(attack_component.enemy.global_position)
-		if not attack_component.attack_started and global_position.distance_to(attack_component.enemy.global_position) < 20:
-			attack_component.start_attack()
-	if is_attacking and attack_component.attack_started:
-		attack_component.update_attack()
-	elif is_harvesting and harvest_component.current_resource and global_position.distance_to(harvest_component.current_resource.global_position) < 20:
-		harvest_component.harvest()
+		attack_component.update()
+	elif is_harvesting:
+		harvest_component.update()
 	elif not navigation_agent_node.is_navigation_finished():
 		movement_component.move()
 	else:

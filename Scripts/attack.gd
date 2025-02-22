@@ -1,15 +1,17 @@
 extends Node
 class_name Attack
 
-var enemy: Node = null  # Generic enemy type.
+var enemy: Node2D = null  # Generic enemy type.
 var attack_started: bool = false
 var enemy_damaged: bool = false
 var enemies_in_range: Array[Node2D] = []
-@export var damage_frame: int
 
+@export var attack_range: int = 30
+@export var damage_frame: int
 @export var enemy_sense_range: Area2D
 @export var entity: Node2D
 @export var attack_timeout_timer: Timer
+@export var movement_component: Movement
 
 func _ready() -> void:
 	await get_tree().process_frame 
@@ -23,10 +25,23 @@ func set_enemy(e: Node) -> void:
 		if entity.has_node("Selection") and entity.selected:
 			enemy.damageable_component.outline(false)
 	# Set new enemy and apply outline.
-	if e and e.has_node("Damageable") and e.damageable_component:
-		enemy = e
-		if entity.has_node("Selection") and entity.selected:
-			enemy.damageable_component.outline(true)
+	enemy = e
+	if e and entity.has_node("Selection") and entity.selected:
+		enemy.damageable_component.outline(true)
+
+func update():
+	switch_enemy_if_dead()
+	if enemy == null or enemy.is_dead:
+		movement_component.move()
+		return
+	if entity.global_position.distance_to(enemy.global_position) > attack_range:
+		movement_component.set_target(enemy.global_position)
+		movement_component.move()
+	else:
+		if not attack_started:
+			start_attack()
+		else:
+			update_attack()
 
 func start_attack():
 	if enemy.damageable_component.health > 0:
@@ -47,9 +62,13 @@ func reset_attack():
 	attack_started = false
 
 func switch_enemy_if_dead():
-	var valid_enemies_in_range = enemies_in_range.filter(func(i): 
-		return i and i != enemy and i.damageable_component.health > 0)
-	if (enemy == null or enemy.damageable_component.health == 0) and valid_enemies_in_range.size() > 0:
+	if (enemy != null and not enemy.is_dead):
+		return
+	var valid_enemies_in_range = enemies_in_range.filter(func(i): return is_instance_valid(i))
+	valid_enemies_in_range = valid_enemies_in_range.filter(
+		func(i): return i != enemy and not i.is_dead and entity.team != i.team
+	)
+	if valid_enemies_in_range.size() > 0:
 		set_enemy(valid_enemies_in_range[0])
 
 func _on_attack_timeout_timeout() -> void:
@@ -58,11 +77,8 @@ func _on_attack_timeout_timeout() -> void:
 func _on_enemy_sense_range_body_entered(body: Node2D):
 	if body == entity:
 		return
-	if entity is Gnome and body is Spider:
-		if body.taming_gnome != entity:
-			enemies_in_range.append(body)
-	if entity is Spider and body is Gnome:
-		if entity.taming_gnome != body:
+	if body is Insect or body is Gnome:
+		if body.team != entity.team:
 			enemies_in_range.append(body)
 			
 func _on_enemy_sense_range_body_exited(body: Node2D):

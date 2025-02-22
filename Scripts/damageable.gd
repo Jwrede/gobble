@@ -12,14 +12,13 @@ var hitflash_frame_counter: int = 0
 @export var sprite: AnimatedSprite2D
 
 func apply_damage(damage_amount: int, from_position: Vector2):
-	print(health)
 	health = max(health - damage_amount, 0)
 	
 	if entity.has_node("Knockback"):
 		entity.knockback_component.apply_knockback(from_position, 50, entity.global_position)
-		sprite.material.set_shader_parameter("hitflash", true)
-		sprite.material.set_shader_parameter("use_outline_shader", false)
-		
+	
+	sprite.material.set_shader_parameter("hitflash", true)
+	sprite.material.set_shader_parameter("use_outline_shader", false)	
 	hitflash_frame_counter = hitflash_frames
 
 func update(delta: float):
@@ -36,6 +35,7 @@ func _die():
 	sprite.play("death")
 	despawn_timer.connect("timeout", _on_despawn_timer_timeout)
 	despawn_timer.start(10)
+	print("A")
 	entity.is_dead = true
 	emit_signal("died")
 
@@ -44,4 +44,4 @@ func outline(toggle: bool) -> void:
 	sprite.material.set_shader_parameter("width", toggle)
 
 func _on_despawn_timer_timeout() -> void:
-	queue_free()
+	entity.queue_free()

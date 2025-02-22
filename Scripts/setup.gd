@@ -16,4 +16,5 @@ func _ready() -> void:
 				randf_range(-random_spawn_offset,random_spawn_offset)
 			)
 		gnome_spawn_parent_node.add_child(gnome_instance)
+		gnome_instance.gnome.team = 1
 		GameState.gnome_spawned(gnome_instance.gnome)

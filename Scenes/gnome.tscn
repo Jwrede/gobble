@@ -232,7 +232,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fdgbw"]
-radius = 16.0
+radius = 25.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ryvby"]
 radius = 12.0
@@ -288,9 +288,9 @@ centered = false
 offset = Vector2(-8, -16)
 
 [node name="TameRange" type="Area2D" parent="Gnome"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gnome/TameRange"]
-visible = false
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_fdgbw")
 
@@ -303,12 +303,14 @@ position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_ryvby")
 
 [node name="AttackRange" type="Area2D" parent="Gnome"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gnome/AttackRange"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_g4n05")
 
 [node name="EnemySenseRange" type="Area2D" parent="Gnome"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gnome/EnemySenseRange"]
 position = Vector2(0, -6)
@@ -329,15 +331,17 @@ speed = 20.0
 sprite = NodePath("../AnimatedSprite2D")
 navigation_agent = NodePath("../NavigationAgent2D")
 
-[node name="Attack" type="Node" parent="Gnome" node_paths=PackedStringArray("enemy_sense_range", "entity", "attack_timeout_timer")]
+[node name="Attack" type="Node" parent="Gnome" node_paths=PackedStringArray("enemy_sense_range", "entity", "attack_timeout_timer", "movement_component")]
 script = ExtResource("8_7rb07")
 damage_frame = 4
 enemy_sense_range = NodePath("../EnemySenseRange")
 entity = NodePath("..")
 attack_timeout_timer = NodePath("../AttackTimeout")
+movement_component = NodePath("../Movement")
 
 [node name="Taming" type="Node" parent="Gnome" node_paths=PackedStringArray("gnome", "tame_timer")]
 script = ExtResource("9_myw72")
+tame_timeout = 50
 gnome = NodePath("..")
 tame_timer = NodePath("../TameTimeout")
 
@@ -348,6 +352,7 @@ sprite = NodePath("../AnimatedSprite2D")
 
 [node name="Damageable" type="Node" parent="Gnome" node_paths=PackedStringArray("despawn_timer", "entity", "sprite")]
 script = ExtResource("10_o24nf")
+health = 1000
 despawn_timer = NodePath("../DespawnTimer")
 entity = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
@@ -356,10 +361,11 @@ sprite = NodePath("../AnimatedSprite2D")
 script = ExtResource("11_2unf2")
 entity = NodePath("..")
 
-[node name="Harvest" type="Node" parent="Gnome" node_paths=PackedStringArray("gnome", "harvest_timer")]
+[node name="Harvest" type="Node" parent="Gnome" node_paths=PackedStringArray("gnome", "harvest_timer", "movement_component")]
 script = ExtResource("7_3vsw0")
 gnome = NodePath("..")
 harvest_timer = NodePath("../HarvestTimeout")
+movement_component = NodePath("../Movement")
 
 [node name="Waypoint" type="Sprite2D" parent="."]
 visible = false
@@ -369,11 +375,11 @@ position = Vector2(0, -10)
 scale = Vector2(0.226118, 0.0781745)
 texture = ExtResource("4_1s35n")
 
-[connection signal="waypoint_changed" from="Gnome" to="." method="_on_player_body_waypoint_changed"]
 [connection signal="body_entered" from="Gnome/TameRange" to="Gnome/Taming" method="_on_tame_range_body_entered"]
 [connection signal="body_exited" from="Gnome/TameRange" to="Gnome/Taming" method="_on_tame_range_body_exited"]
 [connection signal="area_entered" from="Gnome/ResourceRange" to="Gnome/Harvest" method="_on_resource_range_area_entered"]
 [connection signal="area_exited" from="Gnome/ResourceRange" to="Gnome/Harvest" method="_on_resource_range_area_exited"]
 [connection signal="timeout" from="Gnome/HarvestTimeout" to="Gnome/Harvest" method="_on_harvest_timeout_timeout"]
+[connection signal="waypoint_changed" from="Gnome/Movement" to="." method="_on_movement_waypoint_changed"]
 [connection signal="selected_toggle" from="Gnome/Selection" to="." method="_on_selection_selected_toggle"]
 [connection signal="died" from="Gnome/Damageable" to="Gnome" method="_on_damageable_died"]
